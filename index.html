@@ -3,878 +3,896 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rybárske okno — Devín &amp; Láb</title>
+<title>Rybárske okno</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg-1:#0E2026;
-    --bg-2:#0A1A1E;
-    --panel:#16363A;
-    --panel-border:rgba(232,219,180,0.14);
-    --foam:#F2ECDA;
-    --foam-dim:#B9C4BC;
-    --gold:#D9A441;
-    --gold-soft:#E8C374;
-    --reed:#7C9473;
-    --rust:#C1502E;
-    --rust-soft:#E08562;
-    --radius:18px;
-    --shadow: 0 12px 28px -10px rgba(0,0,0,0.45);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      radial-gradient(120% 70% at 15% -10%, rgba(217,164,65,0.10), transparent 60%),
-      linear-gradient(180deg, var(--bg-1), var(--bg-2) 70%);
-    color:var(--foam);
-    font-family:'Work Sans', system-ui, sans-serif;
-    min-height:100vh;
-    line-height:1.5;
-    padding-bottom:48px;
-  }
-  a{color:var(--gold-soft);}
-  .wrap{max-width:880px;margin:0 auto;padding:28px 18px 0;}
+:root{
+  --bg:#080F12;
+  --surface:#0D1B21;
+  --card:#111E24;
+  --card2:#152028;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --txt:#E8EEF0;
+  --txt2:#7A9AA8;
+  --txt3:#4A6878;
+  --accent:#00C9A7;
+  --accent2:#00A88A;
+  --gold:#F5C842;
+  --gold2:#D4A820;
+  --warn:#FF7043;
+  --warn2:#D4522E;
+  --ok:#66BB6A;
+  --ok2:#4A9E4E;
+  --mid:#FFA726;
+  --mid2:#D4881E;
+  --r:14px;
+  --r2:10px;
+  --sh:0 8px 32px rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100vh;}
+body{
+  background:var(--bg);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 80% -10%, rgba(0,201,167,0.06), transparent),
+    radial-gradient(ellipse 40% 30% at 0% 60%, rgba(245,200,66,0.04), transparent);
+  color:var(--txt);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.5;
+  padding-bottom:60px;
+}
+.wrap{max-width:940px;margin:0 auto;padding:24px 16px 0;}
 
-  /* ---------- HERO ---------- */
-  .hero{padding:6px 0 22px;border-bottom:1px solid var(--panel-border);}
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;
-    color:var(--gold-soft);margin:0 0 10px;
-  }
-  h1{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:clamp(30px, 7vw, 44px);
-    margin:0 0 6px;
-    letter-spacing:-0.01em;
-  }
-  .hero-sub{color:var(--foam-dim);font-size:15px;margin:0 0 18px;max-width:52ch;}
-  .summary-line{
-    font-family:'Fraunces', serif;
-    font-size:18px;
-    font-weight:500;
-    padding:14px 16px;
-    border-radius:12px;
-    background:rgba(217,164,65,0.09);
-    border:1px solid rgba(217,164,65,0.25);
-    color:var(--gold-soft);
-    min-height:24px;
-  }
-  .meta-row{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--foam-dim);
-  }
-  .refresh-btn{
-    background:transparent;border:1px solid var(--panel-border);color:var(--foam);
-    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:7px 12px;border-radius:8px;
-    cursor:pointer;transition:border-color .15s, color .15s;
-  }
-  .refresh-btn:hover{border-color:var(--gold);color:var(--gold-soft);}
-  .refresh-btn:focus-visible, button:focus-visible, .tab:focus-visible{
-    outline:2px solid var(--gold); outline-offset:2px;
-  }
+/* NAV */
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:20px;border-bottom:1px solid var(--border);
+  margin-bottom:24px;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;}
+.brand-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;}
+.brand-sub{font-size:11.5px;color:var(--txt2);margin-top:1px;font-family:'JetBrains Mono',monospace;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-icon{
+  background:var(--card);border:1px solid var(--border2);color:var(--txt2);
+  padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;
+  font-family:'JetBrains Mono',monospace;transition:all .15s;
+}
+.btn-icon:hover{border-color:var(--accent);color:var(--accent);}
+.last-upd{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace;}
 
-  .mode-row{
-    display:flex;align-items:center;gap:10px;margin:18px 0 0;flex-wrap:wrap;
-  }
-  .mode-label{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--foam-dim);letter-spacing:.04em;
-  }
+/* MODE CHIPS */
+.mode-bar{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.chip{
+  padding:6px 14px;border-radius:20px;border:1px solid var(--border2);
+  background:transparent;color:var(--txt2);font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .15s;font-family:'Inter',sans-serif;
+}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#05161C;font-weight:600;}
+.chip:hover:not(.active){border-color:var(--accent);color:var(--accent);}
 
-  /* ---------- CARDS ---------- */
-  .cards{
-    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0;
-  }
-  @media (max-width:620px){ .cards{grid-template-columns:1fr;} }
+/* SUMMARY BANNER */
+.banner{
+  padding:14px 18px;border-radius:var(--r);margin-bottom:22px;
+  border:1px solid rgba(0,201,167,0.25);
+  background:linear-gradient(90deg,rgba(0,201,167,0.08),rgba(0,201,167,0.03));
+  font-size:15px;font-weight:500;color:var(--accent);min-height:22px;
+}
 
-  .card{
-    background:linear-gradient(165deg, var(--panel), #122B2E);
-    border:1px solid var(--panel-border);
-    border-radius:var(--radius);
-    padding:20px;
-    box-shadow:var(--shadow);
-  }
-  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-  .loc-name{font-family:'Fraunces',serif;font-weight:600;font-size:21px;margin:0;}
-  .loc-sub{font-size:12.5px;color:var(--foam-dim);margin:2px 0 0;}
+/* GRID */
+.locs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+@media(max-width:640px){.locs{grid-template-columns:1fr;}}
 
-  .dial-wrap{display:flex;flex-direction:column;align-items:center;gap:0;margin:12px 0 8px;}
-  .dial-svg{width:190px;max-width:100%;height:auto;display:block;}
-  .needle{transition:transform 1.1s cubic-bezier(.22,1,.36,1);}
-  .dial-readout{text-align:center;margin-top:-10px;}
-  .dial-num{font-family:'Fraunces',serif;font-weight:700;font-size:38px;line-height:1;}
-  .dial-label{font-size:14px;font-weight:600;margin-top:2px;}
-  .dial-meta{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--foam-dim);margin-top:5px;}
+/* LOCATION CARD */
+.loc-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+}
+.loc-header{
+  padding:14px 16px 10px;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.loc-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;letter-spacing:-0.01em;}
+.loc-sub{font-size:11.5px;color:var(--txt3);margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.loc-badge{
+  font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;
+  padding:3px 7px;border-radius:5px;white-space:nowrap;
+}
+.badge-river{background:rgba(0,201,167,0.15);color:var(--accent);}
+.badge-lake{background:rgba(245,200,66,0.15);color:var(--gold);}
 
-  .reasons{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;}
-  .reasons li{
-    font-size:13px;color:var(--foam-dim);
-    padding-left:14px;position:relative;
-  }
-  .reasons li::before{
-    content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;
-    background:var(--gold);
-  }
+/* DIAL */
+.dial-section{padding:16px;display:flex;align-items:center;gap:14px;}
+.dial-svg{width:100px;height:60px;flex:none;}
+.dial-info{}
+.dial-score{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;line-height:1;}
+.dial-label{font-size:13px;font-weight:600;margin-top:2px;}
+.dial-reasons{font-size:12px;color:var(--txt2);margin-top:6px;line-height:1.55;}
+.dial-reasons span{display:block;}
 
-  .windows{margin-top:16px;padding-top:14px;border-top:1px dashed var(--panel-border);}
-  .windows-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--foam-dim);margin:0 0 8px;}
-  .window-item{
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:13.5px;padding:6px 0;
-  }
-  .window-day{color:var(--foam-dim);}
-  .window-score{font-family:'IBM Plex Mono',monospace;font-weight:500;}
+/* STATS ROW */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+  gap:0;border-top:1px solid var(--border);
+}
+.stat{
+  padding:11px 12px;border-right:1px solid var(--border);
+}
+.stat:last-child{border-right:none;}
+.stat-label{font-size:10.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
+.stat-val{font-size:15px;font-weight:600;margin-top:3px;font-family:'Space Grotesk',sans-serif;}
+.stat-sub{font-size:10.5px;color:var(--txt2);margin-top:1px;}
 
-  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;}
-  .c-good{color:var(--gold-soft);} .dot-good{background:var(--gold);}
-  .c-ok{color:#C9D6A8;} .dot-ok{background:#9AB36B;}
-  .c-meh{color:#E3B370;} .dot-meh{background:#C98A3A;}
-  .c-bad{color:var(--rust-soft);} .dot-bad{background:var(--rust);}
+/* WINDOWS */
+.windows{border-top:1px solid var(--border);padding:12px 14px;}
+.sec-label{font-size:10.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.win-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13px;}
+.win-day{color:var(--txt2);}
+.win-score{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;}
+.win-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;flex-none;}
 
-  /* ---------- GRAPH (signature element) ---------- */
-  .graph-card{
-    background:linear-gradient(165deg, var(--panel), #0F2A2D);
-    border:1px solid var(--panel-border);border-radius:var(--radius);
-    padding:20px 18px 14px;box-shadow:var(--shadow);margin-bottom:16px;
-  }
-  .graph-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
-  .graph-title{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin:0;}
-  .tabs{display:flex;gap:6px;}
-  .tab{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 11px;border-radius:20px;
-    border:1px solid var(--panel-border);background:transparent;color:var(--foam-dim);cursor:pointer;
-  }
-  .tab.active{background:var(--gold);border-color:var(--gold);color:#1B1306;font-weight:600;}
-  .graph-caption{font-size:12.5px;color:var(--foam-dim);margin:4px 0 12px;}
-  canvas#riverGraph{width:100%;display:block;border-radius:10px;}
-  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--foam-dim);}
-  .legend span{display:inline-flex;align-items:center;gap:6px;}
-  .legend i{width:14px;height:3px;border-radius:2px;display:inline-block;}
+/* GRAPH CARD */
+.graph-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:16px;overflow:hidden;
+}
+.graph-head{
+  padding:14px 16px 10px;display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--border);
+}
+.graph-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;}
+.graph-tabs{display:flex;gap:6px;}
+.gtab{
+  font-size:11.5px;padding:4px 10px;border-radius:6px;border:1px solid var(--border2);
+  background:transparent;color:var(--txt2);cursor:pointer;font-family:'JetBrains Mono',monospace;
+  transition:all .15s;
+}
+.gtab.active{background:rgba(0,201,167,0.15);border-color:var(--accent);color:var(--accent);}
+.graph-inner{padding:14px 12px 8px;}
+canvas{display:block;width:100%;}
+.graph-legend{display:flex;gap:14px;flex-wrap:wrap;padding:4px 4px 4px;font-size:11.5px;color:var(--txt2);}
+.gl{display:flex;align-items:center;gap:5px;}
+.gl i{width:12px;height:3px;border-radius:2px;display:inline-block;}
 
-  /* ---------- MANUAL ESTIMATE ---------- */
-  details.manual{
-    background:transparent;border:1px dashed var(--panel-border);border-radius:var(--radius);
-    padding:4px 18px 16px;margin-bottom:18px;
-  }
-  details.manual summary{
-    cursor:pointer;padding:14px 0;font-family:'IBM Plex Mono',monospace;
-    font-size:13px;color:var(--foam-dim);letter-spacing:.03em;
-  }
-  .manual-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;}
-  @media (max-width:480px){ .manual-grid{grid-template-columns:1fr;} }
-  .field label{display:block;font-size:12px;color:var(--foam-dim);margin-bottom:5px;}
-  .field input{
-    width:100%;background:#0E2024;border:1px solid var(--panel-border);color:var(--foam);
-    border-radius:8px;padding:9px 10px;font-family:'IBM Plex Mono',monospace;font-size:13px;
-  }
-  .manual-result{
-    margin-top:14px;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.03);
-    font-size:14px;
-  }
-  .manual-btn{
-    margin-top:12px;background:var(--gold);color:#1B1306;border:none;border-radius:8px;
-    padding:10px 16px;font-weight:600;font-family:'Work Sans';cursor:pointer;font-size:13.5px;
-  }
+/* MANUAL */
+details.manual{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:16px;overflow:hidden;
+}
+details.manual summary{
+  padding:14px 16px;cursor:pointer;font-size:13.5px;font-weight:500;
+  color:var(--txt2);list-style:none;display:flex;align-items:center;gap:8px;
+}
+details.manual summary::before{content:'＋';color:var(--accent);font-size:14px;}
+details[open].manual summary::before{content:'－';}
+.manual-body{padding:0 16px 16px;border-top:1px solid var(--border);}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px;}
+.mfield label{display:block;font-size:11.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;margin-bottom:5px;}
+.mfield input,.mfield select{
+  width:100%;background:#0A1820;border:1px solid var(--border2);color:var(--txt);
+  border-radius:8px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:13px;
+}
+.mbtn{
+  margin-top:12px;background:var(--accent);color:#05161C;border:none;border-radius:8px;
+  padding:9px 16px;font-weight:600;font-size:13px;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+}
+.mresult{margin-top:10px;padding:10px 12px;border-radius:8px;background:rgba(0,201,167,0.07);font-size:13px;line-height:1.6;}
 
-  footer{color:var(--foam-dim);font-size:12px;text-align:center;margin-top:8px;}
-  footer p{margin:4px 0;}
+/* SKELETON */
+.sk{height:12px;border-radius:5px;background:linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.09),rgba(255,255,255,0.04));background-size:200% 100%;animation:sh 1.4s infinite;}
+@keyframes sh{to{background-position:-200% 0;}}
+@media(prefers-reduced-motion:reduce){.sk{animation:none;}}
 
-  .skeleton{
-    height:14px;border-radius:6px;background:linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.12), rgba(255,255,255,0.05));
-    background-size:200% 100%; animation:shimmer 1.4s infinite;
-  }
-  @media (prefers-reduced-motion: reduce){ .skeleton{animation:none;} }
-  @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+/* ERROR */
+.err{background:rgba(255,112,67,0.08);border:1px solid rgba(255,112,67,0.3);border-radius:12px;padding:14px;font-size:13.5px;color:var(--warn);}
 
-  .error-box{
-    background:rgba(193,80,46,0.12);border:1px solid rgba(193,80,46,0.4);
-    border-radius:12px;padding:14px 16px;font-size:13.5px;color:var(--rust-soft);
-  }
+footer{text-align:center;font-size:11.5px;color:var(--txt3);margin-top:8px;font-family:'JetBrains Mono',monospace;line-height:1.7;}
+
+/* color helpers */
+.c-good{color:var(--ok);}
+.c-ok{color:var(--accent);}
+.c-meh{color:var(--mid);}
+.c-bad{color:var(--warn);}
+.dot-good{background:var(--ok);}
+.dot-ok{background:var(--accent);}
+.dot-meh{background:var(--mid);}
+.dot-bad{background:var(--warn);}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="hero">
-    <p class="eyebrow">Sútok Moravy a Dunaja</p>
-    <h1>Rybárske okno</h1>
-    <p class="hero-sub">Odhad aktivity rýb pre Devín a Láb na základe tlaku, teploty a zrážok — naživo z Open-Meteo.</p>
-    <div id="summaryLine" class="summary-line">Načítavam aktuálne počasie…</div>
-    <div class="meta-row">
-      <span id="lastUpdated">—</span>
-      <button class="refresh-btn" id="refreshBtn">⟳ Obnoviť</button>
+<nav>
+  <div class="nav-brand">
+    <div class="brand-icon">🎣</div>
+    <div>
+      <div class="brand-name">Rybárske okno</div>
+      <div class="brand-sub">Morava · Devín · Centnúz</div>
     </div>
   </div>
+  <div class="nav-right">
+    <span class="last-upd" id="lastUpd">—</span>
+    <button class="btn-icon" id="refreshBtn">⟳ Obnoviť</button>
+  </div>
+</nav>
 
-  <div class="mode-row">
-    <span class="mode-label">Režim:</span>
-    <div class="tabs" id="modeTabs">
-      <button class="tab active" data-mode="general">Všeobecné</button>
-      <button class="tab" data-mode="zubac">Zubáč</button>
-      <button class="tab" data-mode="sumec">Sumec</button>
+<div class="mode-bar" id="modeTabs">
+  <button class="chip active" data-mode="general">🐟 Všeobecné</button>
+  <button class="chip" data-mode="privlac">🎣 Prívlač</button>
+  <button class="chip" data-mode="polozena">⚓ Položená</button>
+  <button class="chip" data-mode="zubac">👁 Zubáč</button>
+  <button class="chip" data-mode="sumec">🌑 Sumec</button>
+</div>
+
+<div class="banner" id="banner">Načítavam podmienky…</div>
+
+<div class="locs" id="locsRoot"></div>
+
+<div class="graph-card">
+  <div class="graph-head">
+    <span class="graph-title">Priebeh tlaku — 2 dni späť / 4 dopredu</span>
+    <div class="graph-tabs" id="graphTabs">
+      <button class="gtab active" data-loc="vysoka">Morava</button>
+      <button class="gtab" data-loc="centuz">Centnúz</button>
+      <button class="gtab" data-loc="devin">Devín</button>
     </div>
   </div>
-
-  <div class="cards" id="cardsRoot">
-    <!-- filled by JS -->
-  </div>
-
-  <div class="graph-card">
-    <div class="graph-head">
-      <h2 class="graph-title">Priebeh tlaku — 2 dni späť, 4 dni dopredu</h2>
-      <div class="tabs" id="graphTabs">
-        <button class="tab active" data-loc="devin">Devín</button>
-        <button class="tab" data-loc="lab">Láb</button>
-      </div>
-    </div>
-    <p class="graph-caption">Zlatá = tlak klesá (priaznivé), hrdzavá = tlak rýchlo stúpa (útlm). Bodky = odhadované najlepšie okná.</p>
-    <canvas id="riverGraph" height="220"></canvas>
-    <div class="legend">
-      <span><i style="background:var(--gold)"></i> klesajúci tlak</span>
-      <span><i style="background:var(--reed)"></i> stabilný tlak</span>
-      <span><i style="background:var(--rust)"></i> rýchlo stúpajúci tlak</span>
+  <div class="graph-inner">
+    <canvas id="riverGraph" height="180"></canvas>
+    <div class="graph-legend">
+      <span class="gl"><i style="background:var(--ok)"></i>tlak klesá</span>
+      <span class="gl"><i style="background:var(--accent)"></i>stabilný</span>
+      <span class="gl"><i style="background:var(--warn)"></i>tlak stúpa</span>
+      <span class="gl"><i style="background:rgba(245,200,66,0.8)"></i>súmrak/noc</span>
     </div>
   </div>
+</div>
 
-  <details class="manual">
-    <summary>Ručný odhad — keď nemáš signál a chceš si len overiť pravidlo</summary>
-    <div class="manual-grid">
-      <div class="field">
-        <label for="mMode">Režim</label>
-        <select id="mMode" style="width:100%;background:#0E2024;border:1px solid var(--panel-border);color:var(--foam);border-radius:8px;padding:9px 10px;font-family:'IBM Plex Mono',monospace;font-size:13px;">
+<details class="manual">
+  <summary>Rýchly ručný odhad</summary>
+  <div class="manual-body">
+    <div class="mgrid">
+      <div class="mfield"><label>Režim</label>
+        <select id="mMode">
           <option value="general">Všeobecné</option>
+          <option value="privlac">Prívlač</option>
+          <option value="polozena">Položená</option>
           <option value="zubac">Zubáč</option>
           <option value="sumec">Sumec</option>
         </select>
       </div>
-      <div class="field">
-        <label for="mPressureTrend">Zmena tlaku za 3h (hPa)</label>
-        <input type="number" id="mPressureTrend" step="0.1" value="-1.0">
-      </div>
-      <div class="field">
-        <label for="mTempTrend">Zmena teploty za 24h (°C)</label>
-        <input type="number" id="mTempTrend" step="0.5" value="1">
-      </div>
-      <div class="field">
-        <label for="mPrecip">Zrážky teraz (mm/h)</label>
-        <input type="number" id="mPrecip" step="0.1" value="0">
-      </div>
-      <div class="field">
-        <label for="mWind">Vietor (km/h)</label>
-        <input type="number" id="mWind" step="1" value="10">
-      </div>
-      <div class="field">
-        <label for="mHour">Hodina dňa (0–23)</label>
-        <input type="number" id="mHour" min="0" max="23" value="19">
-      </div>
+      <div class="mfield"><label>Zmena tlaku 3h (hPa)</label><input type="number" id="mP" step="0.1" value="-1"></div>
+      <div class="mfield"><label>Zmena teploty 24h (°C)</label><input type="number" id="mT" step="0.5" value="1"></div>
+      <div class="mfield"><label>Zrážky (mm/h)</label><input type="number" id="mR" step="0.1" value="0"></div>
+      <div class="mfield"><label>Vietor (km/h)</label><input type="number" id="mW" step="1" value="10"></div>
+      <div class="mfield"><label>Hodina (0–23)</label><input type="number" id="mH" min="0" max="23" value="19"></div>
     </div>
-    <button class="manual-btn" id="manualBtn">Spočítať odhad</button>
-    <div class="manual-result" id="manualResult"></div>
-  </details>
+    <button class="mbtn" id="manualBtn">Spočítať</button>
+    <div class="mresult" id="mResult" style="display:none"></div>
+  </div>
+</details>
 
-  <footer>
-    <p>Dáta: Open-Meteo (voľne dostupné). Toto je heuristický odhad podľa všeobecných rybárskych pravidiel, nie záruka úlovku.</p>
-    <p>Stránka sa každé ráno automaticky aktualizuje so zapečenými dátami — pri otvorení nepotrebuje sťahovať nič naživo.</p>
-  </footer>
+<footer>
+  <p>Počasie: Open-Meteo · Prietok: GloFAS · Teplota vody: odhadovaná z teploty pôdy</p>
+  <p>Heuristický odhad — nie záruka úlovku. Dáta sa automaticky pečú každé ráno.</p>
+</footer>
 
-</div>
-
+</div><!-- wrap -->
 <script>
 /* =========================================================================
-   SCORING ENGINE — pure functions, no DOM dependency.
-   Kept isolated on purpose: this exact logic can be copy-pasted later into
-   a small server-side cron job for the morning email report, unchanged.
+   CONSTANTS & LOCATIONS
    ========================================================================= */
-function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
-
-const MODES = {
-  general: { label: 'Všeobecné' },
-  zubac:   { label: 'Zubáč' },
-  sumec:   { label: 'Sumec' }
+const LOCATIONS = {
+  vysoka: {
+    name:'Vysoká pri Morave', sub:'rieka · prívlač / položená', lat:48.4110, lon:16.9890,
+    type:'river', badge:'badge-river', floodLat:48.41, floodLon:16.99,
+    notes:'Rieka Morava — sleduj prietok a zákal',
+    shmuId:5087, shmuName:'Vysoká pri Morave',
+    spa:[400,450,500]  // hranice SPA 1/2/3 v cm
+  },
+  centuz: {
+    name:'VN Centnúz', sub:'jazero / nádrž · Láb', lat:48.3704, lon:17.0454,
+    type:'lake', badge:'badge-lake', floodLat:null,
+    notes:'Uzavretá nádrž — tlak a teplota kľúčové, prietok nie je relevantný',
+    shmuId:null
+  },
+  devin: {
+    name:'Devín', sub:'sútok Morava/Dunaj', lat:48.1769, lon:17.0747,
+    type:'river', badge:'badge-river', floodLat:48.18, floodLon:17.07,
+    notes:'Sútok — teplotné rozhrania, dravce v prúdových hranách',
+    shmuId:5127, shmuName:'Devín',
+    spa:[670,760,850]
+  }
 };
 
-function scoreHour(hours, idx, mode){
-  mode = mode || 'general';
+/* === MORNING_DATA_START === */
+const PRELOADED = {
+  generatedAt: "2026-06-22T09:00:00.000Z",
+  vysoka: {
+    hours: null,
+    shmu: { levelCm: 101, waterTemp: 26.2, fetchedAt: "2026-06-22T09:00:00.000Z" }
+  },
+  centuz: {
+    hours: null,
+    shmu: null
+  },
+  devin: {
+    hours: null,
+    shmu: { levelCm: 165, waterTemp: 20.4, fetchedAt: "2026-06-22T09:00:00.000Z" }
+  }
+};
+/* === MORNING_DATA_END === */
+
+/* =========================================================================
+   SCORING ENGINE
+   ========================================================================= */
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+function scoreHour(hours, idx, mode, locKey){
+  mode = mode||'general';
   const h = hours[idx];
-  const reasons = [];
-  let score = 50;
-  const at = (offset) => hours[idx - offset] || null;
-  const p3 = at(3), p24 = at(24);
-  const hourOfDay = parseInt(h.time.slice(11,13), 10);
+  const at = o => hours[idx-o]||null;
+  const p3=at(3), p24=at(24);
+  const hod = parseInt(h.time.slice(11,13),10);
+  let score=50, reasons=[];
+  let precip24=0;
+  for(let i=Math.max(0,idx-24);i<=idx;i++) precip24+=(hours[i].precip||0);
 
-  let precip24 = 0;
-  for (let i = Math.max(0, idx-24); i <= idx; i++) precip24 += (hours[i].precip || 0);
-
-  if (mode === 'zubac'){
-    // Zubáč: súmrakovo-nočný lovec citlivý na svetlo; zákal mu naopak pomáha;
-    // veľmi citlivý na skokový nárast tlaku po fronte.
-    if (p3){
-      const d3 = h.pressure - p3.pressure;
-      if (d3 <= -1.5){ score += 25; reasons.push('Tlak prudko klesá — blíži sa front'); }
-      else if (d3 <= -0.5){ score += 15; reasons.push('Tlak mierne klesá — dobré podmienky'); }
-      else if (d3 < 0.5){ score += 8; reasons.push('Tlak stabilný'); }
-      else if (d3 < 1.5){ reasons.push('Tlak mierne stúpa'); }
-      else { score -= 20; reasons.push('Tlak rýchlo stúpa — zubáč je na toto extrémne citlivý'); }
+  // --- PRESSURE (mode-specific weights) ---
+  if(p3){
+    const d3=h.pressure-p3.pressure;
+    if(mode==='sumec'){
+      if(d3<=-1.5){score+=30;reasons.push('Tlak prudko klesá — pred búrkou, klasický sumčí spúšťač');}
+      else if(d3<=-0.5){score+=15;reasons.push('Tlak mierne klesá');}
+      else if(d3<0.5){score+=5;reasons.push('Tlak stabilný');}
+      else if(d3<1.5){reasons.push('Tlak mierne stúpa');}
+      else{score-=25;reasons.push('Tlak rýchlo stúpa po búrke — sumec sa stiahne na 2–3 dni');}
+    } else if(mode==='zubac'){
+      if(d3<=-1.5){score+=25;reasons.push('Tlak prudko klesá — blíži sa front');}
+      else if(d3<=-0.5){score+=15;reasons.push('Tlak mierne klesá');}
+      else if(d3<0.5){score+=8;reasons.push('Tlak stabilný');}
+      else if(d3<1.5){reasons.push('Tlak mierne stúpa');}
+      else{score-=20;reasons.push('Tlak rýchlo stúpa — zubáč extrémne citlivý, útlm');}
+    } else {
+      if(d3<=-1.5){score+=25;reasons.push('Tlak prudko klesá — zvýšená šanca na žer');}
+      else if(d3<=-0.5){score+=15;reasons.push('Tlak mierne klesá — dobré podmienky');}
+      else if(d3<0.5){score+=8;reasons.push('Tlak stabilný');}
+      else if(d3<1.5){reasons.push('Tlak mierne stúpa');}
+      else{score-=15;reasons.push('Tlak rýchlo stúpa — front prešiel, útlm');}
     }
-    if (h.precip > 0.1 && h.precip <= 5){ score += 12; reasons.push('Zákalená voda po daždi — korisť ho horšie vidí, zubáčovi to pomáha'); }
-    else if (h.precip > 5){ score -= 5; reasons.push('Veľmi silný dážď — zvýšený prietok komplikuje lov'); }
-    if (h.wind >= 5 && h.wind <= 20){ score += 5; reasons.push('Mierne vlnenie rozbíja svetlo — priaznivé'); }
-    else if (h.wind > 35){ score -= 8; reasons.push('Silný vietor — sťažené podmienky'); }
+  }
+  if(p24 && mode!=='sumec'){
+    const d24=h.pressure-p24.pressure;
+    if(d24<=-4){score-=5;reasons.push('Veľký pokles za 24h — žravá špička možno za nami');}
+    if(Math.abs(d24)<1){score+=5;}
+  }
 
-    if ((hourOfDay >= 20 && hourOfDay <= 23) || (hourOfDay >= 3 && hourOfDay <= 6)){
-      score += 22; reasons.push('Súmrak/svitanie — zubáčia hodinka');
-    } else if (hourOfDay === 0 || hourOfDay <= 2){
-      score += 10; reasons.push('Tichá noc — možné, ale slabšie ako súmrak');
-    } else if (hourOfDay >= 10 && hourOfDay <= 16){
-      score -= 15; reasons.push('Jasné svetlo — zubáč ustupuje do hĺbky');
-    }
-  } else if (mode === 'sumec'){
-    // Sumec: hlboko nočný, miluje teplú vodu a búrkové podmienky; zákal mu vôbec neprekáža (loví hmatom).
-    if (p3){
-      const d3 = h.pressure - p3.pressure;
-      if (d3 <= -1.5){ score += 30; reasons.push('Tlak prudko klesá — klasický spúšťač pred búrkou'); }
-      else if (d3 <= -0.5){ score += 15; reasons.push('Tlak mierne klesá — dobré podmienky'); }
-      else if (d3 < 0.5){ score += 5; reasons.push('Tlak stabilný'); }
-      else if (d3 < 1.5){ reasons.push('Tlak mierne stúpa'); }
-      else { score -= 25; reasons.push('Tlak rýchlo stúpa po búrke — sumec sa na pár dní stiahne'); }
-    }
-    if (h.temp < 10){ score -= 30; reasons.push('Voda pod 10°C — sumec je takmer neaktívny'); }
-    else if (h.temp < 18){ score += Math.round((h.temp-10)*1.2); reasons.push('Vlažná voda — aktivita pomaly rastie s teplotou'); }
-    else { score += 20; reasons.push('Teplá voda nad 18°C — sumec naplno aktívny'); if (h.temp>=24){ score += 5; reasons.push('Vrcholné letné teploty'); } }
+  // --- TEMPERATURE ---
+  if(mode==='sumec'){
+    if(h.temp<10){score-=30;reasons.push('Teplota vody pod 10°C — sumec je takmer neaktívny');}
+    else if(h.temp<18){score+=Math.round((h.temp-10)*1.5);reasons.push(`Voda ${h.temp.toFixed(1)}°C — aktivita rastie s teplotou`);}
+    else{score+=20;reasons.push('Teplá voda — sumec naplno aktívny');if(h.temp>=24){score+=5;}}
+  } else if(p24){
+    const dT=h.temp-p24.temp;
+    if(dT<=-3){score-=15;reasons.push('Prudké ochladenie za 24h — útlm');}
+    else if(dT>=0&&dT<=3){score+=8;reasons.push('Mierne otepľovanie — podporuje žer');}
+    else if(dT>5){score-=8;reasons.push('Rýchle otepľovanie — stres pre ryby');}
+  }
 
-    if (h.precip > 0.1){ score += 8; reasons.push('Dážď/zákal sumcovi neprekáža — loví hmatom a postrannou čiarou'); }
-    if (precip24 > 30){ score -= 5; reasons.push('Veľmi vysoký prietok — opatrne na bezpečnosť pri love'); }
-
-    if ((hourOfDay >= 22) || (hourOfDay <= 4)){
-      score += 25; reasons.push('Hlboká noc — sumčí čas');
-    } else if ((hourOfDay >= 20 && hourOfDay <= 21) || (hourOfDay >= 5 && hourOfDay <= 6)){
-      score += 12; reasons.push('Súmrak/svitanie — slušná šanca');
-    } else if (hourOfDay >= 10 && hourOfDay <= 16){
-      score -= 5; reasons.push('Deň — možné, ale výrazne slabšie ako v noci');
-    }
+  // --- PRECIPITATION / WATER CLARITY ---
+  if(mode==='zubac'){
+    if(h.precip>0.1&&h.precip<=5){score+=12;reasons.push('Zákal — korisť ho horšie vidí, zubáčovi pomáha');}
+    else if(h.precip>5){score-=5;reasons.push('Veľmi silný dážď — prietok komplikuje lov');}
+  } else if(mode==='sumec'){
+    if(h.precip>0.1){score+=8;reasons.push('Dážď/zákal sumcovi neprekáža — loví hmatom');}
+    if(precip24>30){score-=5;reasons.push('Veľmi vysoký prietok — pozor na bezpečnosť');}
+  } else if(mode==='privlac'){
+    if(h.precip>0.1&&h.precip<=2){score+=8;reasons.push('Mierny dážď — okysličuje a rozrušuje hladinu');}
+    else if(h.precip>5){score-=10;reasons.push('Silný dážď — zákal sťažuje prívlač');}
+    if(precip24>15&&locKey==='vysoka'){score-=8;reasons.push('Zvýšený prietok — ryby sa stiahli do zátišia');}
+  } else if(mode==='polozena'){
+    if(h.precip>0.1&&h.precip<=3){score+=12;reasons.push('Dážď — splachuje potravu, ryby začínajú brať');}
+    else if(h.precip>8){score-=12;reasons.push('Silný dážď — zákal komplikuje hľadanie nástrahy');}
+    if(precip24>15&&locKey==='vysoka'){score+=5;reasons.push('Vyšší prietok — položená pri dne efektívna');}
   } else {
-    // Všeobecný (pôvodný) model.
-    if (p3){
-      const d3 = h.pressure - p3.pressure;
-      if (d3 <= -1.5){ score += 25; reasons.push('Tlak prudko klesá — blíži sa front, zvýšená šanca na žer'); }
-      else if (d3 <= -0.5){ score += 15; reasons.push('Tlak mierne klesá — dobré podmienky'); }
-      else if (d3 < 0.5){ score += 8; reasons.push('Tlak stabilný'); }
-      else if (d3 < 1.5){ reasons.push('Tlak mierne stúpa'); }
-      else { score -= 15; reasons.push('Tlak rýchlo stúpa — front prešiel, útlm'); }
-    }
-    if (p24){
-      const d24 = h.pressure - p24.pressure;
-      if (d24 <= -4){ score -= 5; reasons.push('Veľký pokles tlaku za 24h — žravá špička môže byť už za nami'); }
-      if (Math.abs(d24) < 1){ score += 5; }
-    }
-    if (h.precip > 0.1 && h.precip <= 2){ score += 10; reasons.push('Mierny dážď — okysličuje vodu'); }
-    else if (h.precip > 5){ score -= 15; reasons.push('Silný dážď — zákal a zvýšený prietok'); }
-    if (precip24 > 15){ score -= 10; reasons.push('Vyšší prietok po daždi — skús zátišia, nie hlavný prúd'); }
-    if (h.wind >= 5 && h.wind <= 20){ score += 5; reasons.push('Mierny vietor čerí hladinu — priaznivé'); }
-    else if (h.wind > 35){ score -= 10; reasons.push('Silný vietor — sťažené podmienky'); }
-
-    if ((hourOfDay >= 5 && hourOfDay <= 8) || (hourOfDay >= 19 && hourOfDay <= 22)){
-      score += 15; reasons.push('Ranné/večerné svetlo — prirodzene aktívny čas');
-    } else if (hourOfDay >= 11 && hourOfDay <= 15){
-      score -= 8; reasons.push('Poludňajší čas — ryby bývajú pasívnejšie');
-    }
+    if(h.precip>0.1&&h.precip<=2){score+=10;reasons.push('Mierny dážď — okysličuje vodu');}
+    else if(h.precip>5){score-=15;reasons.push('Silný dážď — zákal a zvýšený prietok');}
+    if(precip24>15){score-=10;reasons.push('Vyšší prietok — skús zátišia, nie hlavný prúd');}
   }
 
-  // teplotný trend za 24h sa počíta rovnako pre všetky režimy okrem sumca (ten má vlastnú absolútnu logiku vyššie)
-  if (mode !== 'sumec' && p24){
-    const dT24 = h.temp - p24.temp;
-    if (dT24 <= -3){ score -= 15; reasons.push('Prudké ochladenie za 24h — útlm'); }
-    else if (dT24 >= 0 && dT24 <= 3){ score += 8; reasons.push('Mierne otepľovanie — podporuje žer'); }
-    else if (dT24 > 5){ score -= 8; reasons.push('Veľmi rýchle otepľovanie — stres pre ryby'); }
+  // --- WIND ---
+  if(mode==='privlac'){
+    if(h.wind>=5&&h.wind<=15){score+=8;reasons.push('Ľahký vietor — vlnenie aktivuje dravce');}
+    else if(h.wind>15&&h.wind<=25){score+=3;reasons.push('Stredný vietor — prívlač zvládnuteľný');}
+    else if(h.wind>25){score-=12;reasons.push('Silný vietor — hádzanie a vedenie návnady komplikované');}
+  } else {
+    if(h.wind>=5&&h.wind<=20){score+=5;reasons.push('Mierny vietor čerí hladinu — priaznivé');}
+    else if(h.wind>35){score-=10;reasons.push('Silný vietor — sťažené podmienky');}
   }
 
-  score = clamp(Math.round(score), 0, 100);
-  let label, color;
-  if (score >= 75){ label='Výborný čas'; color='good'; }
-  else if (score >= 55){ label='Dobrá šanca'; color='ok'; }
-  else if (score >= 35){ label='Priemerné'; color='meh'; }
-  else { label='Slabé'; color='bad'; }
-  return { score, label, color, reasons };
+  // --- TIME OF DAY ---
+  if(mode==='zubac'){
+    if((hod>=20&&hod<=23)||(hod>=3&&hod<=6)){score+=22;reasons.push('Súmrak/svitanie — zubáčia hodinka');}
+    else if(hod===0||hod<=2){score+=10;reasons.push('Tichá noc — možné');}
+    else if(hod>=10&&hod<=16){score-=15;reasons.push('Jasné denné svetlo — zubáč ustupuje do hĺbky');}
+  } else if(mode==='sumec'){
+    if(hod>=22||hod<=4){score+=25;reasons.push('Hlboká noc — sumčí čas');}
+    else if((hod>=20&&hod<=21)||(hod>=5&&hod<=6)){score+=12;reasons.push('Súmrak/svitanie — slušná šanca');}
+    else if(hod>=10&&hod<=16){score-=5;reasons.push('Deň — výrazne slabšie ako v noci');}
+  } else if(mode==='privlac'){
+    if((hod>=6&&hod<=9)||(hod>=18&&hod<=21)){score+=18;reasons.push('Zlatá hodinka — dravce aktívne na hladine');}
+    else if(hod>=22||hod<=5){score-=5;reasons.push('Noc — prívlač menej efektívny bez svetla');}
+    else if(hod>=11&&hod<=15){score-=5;reasons.push('Poludnie — dravce pod vodou');}
+  } else {
+    if((hod>=5&&hod<=8)||(hod>=19&&hod<=22)){score+=15;reasons.push('Ranné/večerné svetlo — aktívny čas');}
+    else if(hod>=11&&hod<=15){score-=8;reasons.push('Poludňajší čas — pasívnejšie');}
+  }
+
+  // --- LAKE vs RIVER specific ---
+  if(locKey==='centuz'){
+    score+=3; // uzavretá nádrž — tlak viac dominuje, bez zákalového efektu rieky
+  }
+
+  score=clamp(Math.round(score),0,100);
+  let label,color;
+  if(score>=75){label='Výborný';color='good';}
+  else if(score>=55){label='Dobrá šanca';color='ok';}
+  else if(score>=35){label='Priemerné';color='meh';}
+  else{label='Slabé';color='bad';}
+  return {score,label,color,reasons};
 }
 
 function findBestWindows(hours, scores, daysAhead){
-  const todayStr = hours[0].time.slice(0,10);
-  const today = new Date(todayStr + 'T00:00:00');
-  const out = [];
-  for (let d=0; d<daysAhead; d++){
-    const targetStr = new Date(today.getTime() + d*86400000).toISOString().slice(0,10);
-    let best = null;
-    for (let i=0;i<hours.length;i++){
-      const dateStr = hours[i].time.slice(0,10);
-      const hod = parseInt(hours[i].time.slice(11,13),10);
-      if (dateStr === targetStr && hod>=4 && hod<=22){
-        if (!best || scores[i].score > best.score.score) best = { time: hours[i].time, score: scores[i] };
+  const today=new Date(hours[0].time.slice(0,10)+'T00:00:00');
+  const out=[];
+  for(let d=0;d<daysAhead;d++){
+    const ts=new Date(today.getTime()+d*86400000).toISOString().slice(0,10);
+    let best=null;
+    for(let i=0;i<hours.length;i++){
+      const hod=parseInt(hours[i].time.slice(11,13),10);
+      if(hours[i].time.slice(0,10)===ts&&hod>=4&&hod<=23){
+        if(!best||scores[i].score>best.score.score) best={time:hours[i].time,score:scores[i]};
       }
     }
-    if (best) out.push(best);
+    if(best) out.push(best);
   }
   return out;
 }
 
-/* manual quick-estimate, mirrors the same weights but from typed deltas directly */
-function manualEstimate({ pTrend3, tTrend24, precip, wind, hour, mode }){
-  mode = mode || 'general';
-  let score = 50; const reasons = [];
-
-  if (mode === 'zubac'){
-    if (pTrend3 <= -1.5){ score+=25; reasons.push('Tlak prudko klesá'); }
-    else if (pTrend3 <= -0.5){ score+=15; reasons.push('Tlak mierne klesá'); }
-    else if (pTrend3 < 0.5){ score+=8; reasons.push('Tlak stabilný'); }
-    else if (pTrend3 < 1.5){ reasons.push('Tlak mierne stúpa'); }
-    else { score-=20; reasons.push('Tlak rýchlo stúpa — zubáč veľmi citlivý'); }
-    if (precip > 0.1 && precip <= 5){ score+=12; reasons.push('Zákalená voda — pomáha zubáčovi loviť'); }
-    else if (precip > 5){ score-=5; reasons.push('Veľmi silný dážď'); }
-    if (wind >= 5 && wind <= 20){ score+=5; reasons.push('Mierne vlnenie — priaznivé'); }
-    else if (wind > 35){ score-=8; reasons.push('Silný vietor'); }
-    if ((hour>=20&&hour<=23)||(hour>=3&&hour<=6)){ score+=22; reasons.push('Súmrak/svitanie — zubáčia hodinka'); }
-    else if (hour<=2){ score+=10; reasons.push('Tichá noc'); }
-    else if (hour>=10&&hour<=16){ score-=15; reasons.push('Jasné svetlo — útlm'); }
-  } else if (mode === 'sumec'){
-    if (pTrend3 <= -1.5){ score+=30; reasons.push('Tlak prudko klesá — pred búrkou'); }
-    else if (pTrend3 <= -0.5){ score+=15; reasons.push('Tlak mierne klesá'); }
-    else if (pTrend3 < 0.5){ score+=5; reasons.push('Tlak stabilný'); }
-    else if (pTrend3 < 1.5){ reasons.push('Tlak mierne stúpa'); }
-    else { score-=25; reasons.push('Tlak rýchlo stúpa po búrke — útlm na pár dní'); }
-    if (precip > 0.1){ score+=8; reasons.push('Dážď/zákal sumcovi neprekáža'); }
-    if ((hour>=22)||(hour<=4)){ score+=25; reasons.push('Hlboká noc — sumčí čas'); }
-    else if ((hour>=20&&hour<=21)||(hour>=5&&hour<=6)){ score+=12; reasons.push('Súmrak/svitanie'); }
-    else if (hour>=10&&hour<=16){ score-=5; reasons.push('Deň — slabšie'); }
-    reasons.push('Pozn.: teplota vody sa v tomto rýchlom odhade nezohľadňuje, len v hlavnom dashboarde.');
-  } else {
-    if (pTrend3 <= -1.5){ score+=25; reasons.push('Tlak prudko klesá — zvýšená šanca na žer'); }
-    else if (pTrend3 <= -0.5){ score+=15; reasons.push('Tlak mierne klesá — dobré podmienky'); }
-    else if (pTrend3 < 0.5){ score+=8; reasons.push('Tlak stabilný'); }
-    else if (pTrend3 < 1.5){ reasons.push('Tlak mierne stúpa'); }
-    else { score-=15; reasons.push('Tlak rýchlo stúpa — útlm'); }
-    if (precip > 0.1 && precip <= 2){ score+=10; reasons.push('Mierny dážď — okysličuje vodu'); }
-    else if (precip > 5){ score-=15; reasons.push('Silný dážď — zákal'); }
-    if (wind >= 5 && wind <= 20){ score+=5; reasons.push('Mierny vietor — priaznivé'); }
-    else if (wind > 35){ score-=10; reasons.push('Silný vietor — sťažené podmienky'); }
-    if ((hour>=5&&hour<=8)||(hour>=19&&hour<=22)){ score+=15; reasons.push('Ranné/večerné svetlo'); }
-    else if (hour>=11&&hour<=15){ score-=8; reasons.push('Poludnie — pasívnejšie'); }
+function findNowIndex(hours){
+  const fmt=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Bratislava',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hour12:false});
+  const p=fmt.formatToParts(new Date()).reduce((a,x)=>{a[x.type]=x.value;return a;},{});
+  const nowStr=`${p.year}-${p.month}-${p.day}T${p.hour}:00`;
+  let best=0,bestD=Infinity;
+  for(let i=0;i<hours.length;i++){
+    const d=Math.abs(new Date(hours[i].time)-new Date(nowStr));
+    if(d<bestD){bestD=d;best=i;}
   }
-
-  if (mode !== 'sumec'){
-    if (tTrend24 <= -3){ score-=15; reasons.push('Prudké ochladenie — útlm'); }
-    else if (tTrend24 >= 0 && tTrend24 <= 3){ score+=8; reasons.push('Mierne otepľovanie — podporuje žer'); }
-    else if (tTrend24 > 5){ score-=8; reasons.push('Rýchle otepľovanie — stres'); }
-  }
-
-  score = clamp(Math.round(score),0,100);
-  let label = score>=75?'Výborný čas':score>=55?'Dobrá šanca':score>=35?'Priemerné':'Slabé';
-  return { score, label, reasons };
+  return best;
 }
 
 /* =========================================================================
    DATA LAYER
    ========================================================================= */
-const LOCATIONS = {
-  devin: { name:'Devín',  sub:'Sútok Moravy a Dunaja', lat:48.1769, lon:17.0747 },
-  lab:   { name:'Láb',    sub:'Pri rieke Morava',        lat:48.3704, lon:17.0454 }
+function weatherUrl(lat,lon){
+  return `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`+
+    `&hourly=temperature_2m,pressure_msl,precipitation,wind_speed_10m,soil_temperature_6cm`+
+    `&past_days=2&forecast_days=4&timezone=Europe%2FBratislava`;
+}
+function floodUrl(lat,lon){
+  return `https://flood-api.open-meteo.com/v1/flood?latitude=${lat}&longitude=${lon}`+
+    `&daily=river_discharge&past_days=2&forecast_days=4`;
+}
+
+function parseWeather(json){
+  return json.hourly.time.map((t,i)=>({
+    time:t,
+    temp:json.hourly.temperature_2m[i],
+    pressure:json.hourly.pressure_msl[i],
+    precip:json.hourly.precipitation[i]??0,
+    wind:json.hourly.wind_speed_10m[i],
+    soilTemp:json.hourly.soil_temperature_6cm[i]
+  }));
+}
+function parseFlood(json){
+  // Returns daily array {date, discharge}
+  if(!json||!json.daily) return null;
+  return json.daily.time.map((t,i)=>({date:t,discharge:json.daily.river_discharge[i]}));
+}
+
+/* =========================================================================
+   STATE
+   ========================================================================= */
+const state={
+  data:{}, scores:{}, nowIdx:{}, flood:{}, shmu:{}, stale:{},
+  mode:'general', activeGraph:'vysoka',
+  liveAt:null, bakedAt:null
 };
 
-/* Ranná automatizácia (GitHub Action) sem vloží čerstvé dáta každé ráno —
-   stránka sa potom otvorí okamžite bez nutnosti čokoľvek sťahovať.
-   Formát: { devin: { hours: [...] }, lab: { hours: [...] }, generatedAt: "ISO" } */
-/* === MORNING_DATA_START === */
-const PRELOADED = {"generatedAt":"2026-06-22T11:52:18.712Z","devin":{"hours":[{"time":"2026-06-20T00:00","temp":24.8,"pressure":1019.9,"precip":0,"wind":4},{"time":"2026-06-20T01:00","temp":23.4,"pressure":1019.7,"precip":0,"wind":4.5},{"time":"2026-06-20T02:00","temp":23.2,"pressure":1019.3,"precip":0,"wind":3.9},{"time":"2026-06-20T03:00","temp":22.4,"pressure":1019.7,"precip":0,"wind":3.9},{"time":"2026-06-20T04:00","temp":20.8,"pressure":1019.8,"precip":0,"wind":7.5},{"time":"2026-06-20T05:00","temp":20.7,"pressure":1019,"precip":0,"wind":8.8},{"time":"2026-06-20T06:00","temp":21.1,"pressure":1019.8,"precip":0,"wind":9.1},{"time":"2026-06-20T07:00","temp":22,"pressure":1020.4,"precip":0,"wind":10.8},{"time":"2026-06-20T08:00","temp":23.4,"pressure":1020.4,"precip":0,"wind":10.1},{"time":"2026-06-20T09:00","temp":24.9,"pressure":1020.9,"precip":0,"wind":12.1},{"time":"2026-06-20T10:00","temp":26.9,"pressure":1021.1,"precip":0,"wind":13.4},{"time":"2026-06-20T11:00","temp":30.7,"pressure":1020.4,"precip":0,"wind":17},{"time":"2026-06-20T12:00","temp":31.4,"pressure":1020.3,"precip":0,"wind":16.5},{"time":"2026-06-20T13:00","temp":32.1,"pressure":1020.2,"precip":0,"wind":14.8},{"time":"2026-06-20T14:00","temp":32.6,"pressure":1020.2,"precip":0,"wind":13.8},{"time":"2026-06-20T15:00","temp":33,"pressure":1019.6,"precip":0,"wind":13.8},{"time":"2026-06-20T16:00","temp":30.4,"pressure":1020.6,"precip":0,"wind":19.4},{"time":"2026-06-20T17:00","temp":31,"pressure":1019.8,"precip":0,"wind":21.3},{"time":"2026-06-20T18:00","temp":29.8,"pressure":1020.7,"precip":0,"wind":15.6},{"time":"2026-06-20T19:00","temp":28.6,"pressure":1020.4,"precip":0,"wind":14.3},{"time":"2026-06-20T20:00","temp":28,"pressure":1020.6,"precip":0,"wind":8.2},{"time":"2026-06-20T21:00","temp":26.6,"pressure":1020.9,"precip":0,"wind":4},{"time":"2026-06-20T22:00","temp":25.6,"pressure":1021.9,"precip":0,"wind":5.9},{"time":"2026-06-20T23:00","temp":24.5,"pressure":1022,"precip":0,"wind":3.6},{"time":"2026-06-21T00:00","temp":24.1,"pressure":1022.6,"precip":0,"wind":5.6},{"time":"2026-06-21T01:00","temp":24.2,"pressure":1022.6,"precip":0.2,"wind":8.5},{"time":"2026-06-21T02:00","temp":23.1,"pressure":1022.5,"precip":0,"wind":4.5},{"time":"2026-06-21T03:00","temp":21.8,"pressure":1022.7,"precip":0,"wind":6.8},{"time":"2026-06-21T04:00","temp":21,"pressure":1022.9,"precip":0,"wind":4.8},{"time":"2026-06-21T05:00","temp":20.7,"pressure":1022.6,"precip":0.3,"wind":8.7},{"time":"2026-06-21T06:00","temp":21.4,"pressure":1023.5,"precip":0,"wind":9.2},{"time":"2026-06-21T07:00","temp":22.1,"pressure":1023.8,"precip":0,"wind":13.4},{"time":"2026-06-21T08:00","temp":23.4,"pressure":1024.6,"precip":0,"wind":7.1},{"time":"2026-06-21T09:00","temp":26.1,"pressure":1024,"precip":0,"wind":5.6},{"time":"2026-06-21T10:00","temp":27,"pressure":1024.2,"precip":0,"wind":11.4},{"time":"2026-06-21T11:00","temp":29.1,"pressure":1024.1,"precip":0,"wind":10.7},{"time":"2026-06-21T12:00","temp":31,"pressure":1023.5,"precip":0,"wind":11.1},{"time":"2026-06-21T13:00","temp":32.4,"pressure":1022.8,"precip":0,"wind":12.1},{"time":"2026-06-21T14:00","temp":32.5,"pressure":1022.7,"precip":0,"wind":11.9},{"time":"2026-06-21T15:00","temp":33.3,"pressure":1022.5,"precip":0,"wind":9.6},{"time":"2026-06-21T16:00","temp":33.7,"pressure":1021.9,"precip":0,"wind":11.2},{"time":"2026-06-21T17:00","temp":33.6,"pressure":1021.7,"precip":0,"wind":11.4},{"time":"2026-06-21T18:00","temp":33,"pressure":1020.9,"precip":0,"wind":10.2},{"time":"2026-06-21T19:00","temp":30.3,"pressure":1022.5,"precip":0,"wind":11.4},{"time":"2026-06-21T20:00","temp":24.7,"pressure":1024.2,"precip":0,"wind":8.7},{"time":"2026-06-21T21:00","temp":25.5,"pressure":1023.1,"precip":0,"wind":3.6},{"time":"2026-06-21T22:00","temp":26.8,"pressure":1023.2,"precip":0,"wind":5.8},{"time":"2026-06-21T23:00","temp":22,"pressure":1022.9,"precip":0,"wind":8.6},{"time":"2026-06-22T00:00","temp":22.3,"pressure":1023.6,"precip":0,"wind":8.1},{"time":"2026-06-22T01:00","temp":22.1,"pressure":1023.6,"precip":0,"wind":5.9},{"time":"2026-06-22T02:00","temp":21.1,"pressure":1023.7,"precip":0,"wind":7.5},{"time":"2026-06-22T03:00","temp":19.8,"pressure":1023.3,"precip":0,"wind":8.5},{"time":"2026-06-22T04:00","temp":20,"pressure":1023.2,"precip":0,"wind":10.1},{"time":"2026-06-22T05:00","temp":20.4,"pressure":1023.3,"precip":0,"wind":12.9},{"time":"2026-06-22T06:00","temp":21.7,"pressure":1023.3,"precip":0,"wind":13.6},{"time":"2026-06-22T07:00","temp":22.6,"pressure":1023.6,"precip":0,"wind":17.6},{"time":"2026-06-22T08:00","temp":23.1,"pressure":1023.3,"precip":0,"wind":15.8},{"time":"2026-06-22T09:00","temp":24,"pressure":1023.8,"precip":0,"wind":14.3},{"time":"2026-06-22T10:00","temp":26,"pressure":1023.5,"precip":0,"wind":16.2},{"time":"2026-06-22T11:00","temp":28.5,"pressure":1023,"precip":0,"wind":14.3},{"time":"2026-06-22T12:00","temp":29.4,"pressure":1023,"precip":0,"wind":16},{"time":"2026-06-22T13:00","temp":30.4,"pressure":1021.9,"precip":0,"wind":16.2},{"time":"2026-06-22T14:00","temp":30.9,"pressure":1021.2,"precip":0,"wind":15.8},{"time":"2026-06-22T15:00","temp":31.6,"pressure":1020.4,"precip":0,"wind":14.6},{"time":"2026-06-22T16:00","temp":31.4,"pressure":1020,"precip":0,"wind":14.5},{"time":"2026-06-22T17:00","temp":31.8,"pressure":1019.6,"precip":0,"wind":13.4},{"time":"2026-06-22T18:00","temp":31.1,"pressure":1019.8,"precip":0,"wind":13.3},{"time":"2026-06-22T19:00","temp":30.3,"pressure":1020,"precip":0,"wind":11.7},{"time":"2026-06-22T20:00","temp":29.1,"pressure":1020,"precip":0,"wind":9.2},{"time":"2026-06-22T21:00","temp":26.3,"pressure":1020.5,"precip":0,"wind":7.6},{"time":"2026-06-22T22:00","temp":25,"pressure":1021.3,"precip":0,"wind":7.2},{"time":"2026-06-22T23:00","temp":23.7,"pressure":1021.4,"precip":0,"wind":8.8},{"time":"2026-06-23T00:00","temp":23.4,"pressure":1021.3,"precip":0,"wind":7.4},{"time":"2026-06-23T01:00","temp":22.3,"pressure":1021.3,"precip":0,"wind":4.2},{"time":"2026-06-23T02:00","temp":21.3,"pressure":1021.2,"precip":0,"wind":4.8},{"time":"2026-06-23T03:00","temp":20.3,"pressure":1021.1,"precip":0,"wind":6.3},{"time":"2026-06-23T04:00","temp":19.6,"pressure":1021,"precip":0,"wind":7.3},{"time":"2026-06-23T05:00","temp":19.3,"pressure":1020.9,"precip":0,"wind":7.4},{"time":"2026-06-23T06:00","temp":20,"pressure":1020.9,"precip":0,"wind":6.9},{"time":"2026-06-23T07:00","temp":21.2,"pressure":1021.2,"precip":0,"wind":8.8},{"time":"2026-06-23T08:00","temp":22.6,"pressure":1021.3,"precip":0,"wind":10.5},{"time":"2026-06-23T09:00","temp":24.7,"pressure":1021.1,"precip":0,"wind":11.2},{"time":"2026-06-23T10:00","temp":26.5,"pressure":1020.7,"precip":0,"wind":12.7},{"time":"2026-06-23T11:00","temp":27.6,"pressure":1020.4,"precip":0,"wind":13},{"time":"2026-06-23T12:00","temp":28.8,"pressure":1019.8,"precip":0,"wind":13.4},{"time":"2026-06-23T13:00","temp":29.4,"pressure":1019.3,"precip":0,"wind":13.7},{"time":"2026-06-23T14:00","temp":29.9,"pressure":1019,"precip":0,"wind":14.9},{"time":"2026-06-23T15:00","temp":29.9,"pressure":1018.5,"precip":0,"wind":14.5},{"time":"2026-06-23T16:00","temp":30.7,"pressure":1017.8,"precip":0,"wind":12.4},{"time":"2026-06-23T17:00","temp":30.1,"pressure":1017.2,"precip":0,"wind":14.1},{"time":"2026-06-23T18:00","temp":29.6,"pressure":1017.3,"precip":0,"wind":11.7},{"time":"2026-06-23T19:00","temp":28.6,"pressure":1017.4,"precip":0,"wind":10.9},{"time":"2026-06-23T20:00","temp":27.3,"pressure":1018,"precip":0,"wind":7.2},{"time":"2026-06-23T21:00","temp":24.5,"pressure":1018.4,"precip":0,"wind":6.4},{"time":"2026-06-23T22:00","temp":23.3,"pressure":1018.5,"precip":0,"wind":7.5},{"time":"2026-06-23T23:00","temp":22.7,"pressure":1018.8,"precip":0,"wind":8.4},{"time":"2026-06-24T00:00","temp":21.2,"pressure":1019.1,"precip":0,"wind":5.8},{"time":"2026-06-24T01:00","temp":20.1,"pressure":1019.1,"precip":0,"wind":7},{"time":"2026-06-24T02:00","temp":20.2,"pressure":1018.8,"precip":0,"wind":8.4},{"time":"2026-06-24T03:00","temp":20.2,"pressure":1018.6,"precip":0,"wind":8.9},{"time":"2026-06-24T04:00","temp":19.9,"pressure":1018.5,"precip":0,"wind":9.4},{"time":"2026-06-24T05:00","temp":19.9,"pressure":1018.7,"precip":0,"wind":9.7},{"time":"2026-06-24T06:00","temp":20.2,"pressure":1019,"precip":0,"wind":8.9},{"time":"2026-06-24T07:00","temp":19.9,"pressure":1019.5,"precip":0,"wind":7.8},{"time":"2026-06-24T08:00","temp":21.6,"pressure":1019.9,"precip":0,"wind":9.2},{"time":"2026-06-24T09:00","temp":23.6,"pressure":1020.1,"precip":0,"wind":12.4},{"time":"2026-06-24T10:00","temp":25.5,"pressure":1020.1,"precip":0,"wind":13.6},{"time":"2026-06-24T11:00","temp":27,"pressure":1019.9,"precip":0,"wind":14.5},{"time":"2026-06-24T12:00","temp":28.4,"pressure":1019.4,"precip":0,"wind":15.3},{"time":"2026-06-24T13:00","temp":29.4,"pressure":1018.9,"precip":0,"wind":15.6},{"time":"2026-06-24T14:00","temp":30.2,"pressure":1018.1,"precip":0,"wind":15.1},{"time":"2026-06-24T15:00","temp":30.8,"pressure":1017.6,"precip":0,"wind":15.5},{"time":"2026-06-24T16:00","temp":30.8,"pressure":1017.3,"precip":0,"wind":15.4},{"time":"2026-06-24T17:00","temp":30.6,"pressure":1017,"precip":0,"wind":15.5},{"time":"2026-06-24T18:00","temp":29.9,"pressure":1016.7,"precip":0,"wind":13.8},{"time":"2026-06-24T19:00","temp":29,"pressure":1016.9,"precip":0,"wind":11.9},{"time":"2026-06-24T20:00","temp":27.7,"pressure":1017,"precip":0,"wind":7.7},{"time":"2026-06-24T21:00","temp":24.9,"pressure":1017.6,"precip":0,"wind":5.8},{"time":"2026-06-24T22:00","temp":23,"pressure":1017.8,"precip":0,"wind":5.2},{"time":"2026-06-24T23:00","temp":21.8,"pressure":1018,"precip":0,"wind":4.7},{"time":"2026-06-25T00:00","temp":20.7,"pressure":1018.3,"precip":0,"wind":5.4},{"time":"2026-06-25T01:00","temp":19.8,"pressure":1018.3,"precip":0,"wind":5.9},{"time":"2026-06-25T02:00","temp":19.2,"pressure":1018.4,"precip":0,"wind":5.7},{"time":"2026-06-25T03:00","temp":18.3,"pressure":1018.3,"precip":0,"wind":6.3},{"time":"2026-06-25T04:00","temp":17.7,"pressure":1018.4,"precip":0,"wind":6.8},{"time":"2026-06-25T05:00","temp":17.6,"pressure":1018.2,"precip":0,"wind":6.8},{"time":"2026-06-25T06:00","temp":18,"pressure":1018.3,"precip":0,"wind":6.9},{"time":"2026-06-25T07:00","temp":20.6,"pressure":1018.5,"precip":0,"wind":7.3},{"time":"2026-06-25T08:00","temp":23.3,"pressure":1018.9,"precip":0,"wind":7.5},{"time":"2026-06-25T09:00","temp":25.6,"pressure":1018.9,"precip":0,"wind":8.4},{"time":"2026-06-25T10:00","temp":27.7,"pressure":1018.6,"precip":0,"wind":10},{"time":"2026-06-25T11:00","temp":29.6,"pressure":1018.3,"precip":0,"wind":11.1},{"time":"2026-06-25T12:00","temp":30.9,"pressure":1018,"precip":0,"wind":10.8},{"time":"2026-06-25T13:00","temp":32,"pressure":1017.5,"precip":0,"wind":10.1},{"time":"2026-06-25T14:00","temp":32.9,"pressure":1017,"precip":0,"wind":9.7},{"time":"2026-06-25T15:00","temp":33.4,"pressure":1016.5,"precip":0,"wind":10},{"time":"2026-06-25T16:00","temp":33.6,"pressure":1016,"precip":0,"wind":10.2},{"time":"2026-06-25T17:00","temp":33.4,"pressure":1015.6,"precip":0,"wind":10},{"time":"2026-06-25T18:00","temp":32.8,"pressure":1015.5,"precip":0,"wind":8.5},{"time":"2026-06-25T19:00","temp":31.8,"pressure":1015.5,"precip":0,"wind":6.5},{"time":"2026-06-25T20:00","temp":30.5,"pressure":1015.7,"precip":0,"wind":5},{"time":"2026-06-25T21:00","temp":28.3,"pressure":1016,"precip":0,"wind":4.7},{"time":"2026-06-25T22:00","temp":25.7,"pressure":1016.4,"precip":0,"wind":4.9},{"time":"2026-06-25T23:00","temp":23.8,"pressure":1016.7,"precip":0,"wind":5}],"shmu":{"levelCm":170,"waterTemp":21.1,"fetchedAt":"2026-06-22T11:52:19.857Z"}},"lab":{"hours":[{"time":"2026-06-20T00:00","temp":22.6,"pressure":1019.5,"precip":0,"wind":5.2},{"time":"2026-06-20T01:00","temp":22.5,"pressure":1019.2,"precip":0,"wind":5.6},{"time":"2026-06-20T02:00","temp":22,"pressure":1018.8,"precip":0,"wind":5.1},{"time":"2026-06-20T03:00","temp":21.5,"pressure":1019.2,"precip":0,"wind":4.5},{"time":"2026-06-20T04:00","temp":20.5,"pressure":1019.2,"precip":0,"wind":4.7},{"time":"2026-06-20T05:00","temp":21.2,"pressure":1018.1,"precip":0,"wind":5.8},{"time":"2026-06-20T06:00","temp":22.7,"pressure":1018.9,"precip":0,"wind":6.4},{"time":"2026-06-20T07:00","temp":25,"pressure":1019.4,"precip":0,"wind":9.7},{"time":"2026-06-20T08:00","temp":27,"pressure":1019.3,"precip":0,"wind":10},{"time":"2026-06-20T09:00","temp":28.4,"pressure":1020.1,"precip":0,"wind":11.2},{"time":"2026-06-20T10:00","temp":29.7,"pressure":1020.3,"precip":0,"wind":13},{"time":"2026-06-20T11:00","temp":30.8,"pressure":1020,"precip":0,"wind":14.5},{"time":"2026-06-20T12:00","temp":32.2,"pressure":1019.8,"precip":0,"wind":14.2},{"time":"2026-06-20T13:00","temp":32.4,"pressure":1019.8,"precip":0,"wind":10.6},{"time":"2026-06-20T14:00","temp":33.2,"pressure":1019.8,"precip":0,"wind":10.4},{"time":"2026-06-20T15:00","temp":33.9,"pressure":1018.9,"precip":0,"wind":11.3},{"time":"2026-06-20T16:00","temp":30.5,"pressure":1020.2,"precip":0,"wind":20.2},{"time":"2026-06-20T17:00","temp":32.1,"pressure":1018.8,"precip":0,"wind":17.8},{"time":"2026-06-20T18:00","temp":30.3,"pressure":1020.1,"precip":0,"wind":13.5},{"time":"2026-06-20T19:00","temp":29.3,"pressure":1019.8,"precip":0,"wind":10.9},{"time":"2026-06-20T20:00","temp":28.8,"pressure":1020,"precip":0,"wind":5.1},{"time":"2026-06-20T21:00","temp":26.8,"pressure":1020.5,"precip":0,"wind":3.3},{"time":"2026-06-20T22:00","temp":24.8,"pressure":1021.6,"precip":0,"wind":2.8},{"time":"2026-06-20T23:00","temp":23.8,"pressure":1021.6,"precip":0.2,"wind":3.2},{"time":"2026-06-21T00:00","temp":23.4,"pressure":1022.3,"precip":0,"wind":2.4},{"time":"2026-06-21T01:00","temp":21.8,"pressure":1023.2,"precip":0,"wind":7.7},{"time":"2026-06-21T02:00","temp":21.4,"pressure":1022.4,"precip":0,"wind":2.6},{"time":"2026-06-21T03:00","temp":20.1,"pressure":1022.8,"precip":0,"wind":5.2},{"time":"2026-06-21T04:00","temp":19.6,"pressure":1022.8,"precip":0,"wind":3.1},{"time":"2026-06-21T05:00","temp":18.8,"pressure":1022.7,"precip":0,"wind":1},{"time":"2026-06-21T06:00","temp":19.3,"pressure":1023.8,"precip":0,"wind":2.3},{"time":"2026-06-21T07:00","temp":21,"pressure":1024,"precip":0,"wind":1.1},{"time":"2026-06-21T08:00","temp":23,"pressure":1024.4,"precip":0,"wind":3.8},{"time":"2026-06-21T09:00","temp":25.4,"pressure":1024.1,"precip":0,"wind":5.8},{"time":"2026-06-21T10:00","temp":27.6,"pressure":1024.1,"precip":0,"wind":7.9},{"time":"2026-06-21T11:00","temp":29.7,"pressure":1024,"precip":0,"wind":8.4},{"time":"2026-06-21T12:00","temp":31.4,"pressure":1023.4,"precip":0,"wind":8.9},{"time":"2026-06-21T13:00","temp":32.8,"pressure":1022.7,"precip":0,"wind":9.8},{"time":"2026-06-21T14:00","temp":33.2,"pressure":1022.5,"precip":0,"wind":9.8},{"time":"2026-06-21T15:00","temp":33.9,"pressure":1022.3,"precip":0,"wind":10.1},{"time":"2026-06-21T16:00","temp":34.4,"pressure":1021.7,"precip":0,"wind":10.9},{"time":"2026-06-21T17:00","temp":34,"pressure":1021.4,"precip":0,"wind":8.4},{"time":"2026-06-21T18:00","temp":30.7,"pressure":1021.4,"precip":0.7,"wind":12.5},{"time":"2026-06-21T19:00","temp":26.9,"pressure":1022.5,"precip":4.5,"wind":1.3},{"time":"2026-06-21T20:00","temp":24.2,"pressure":1023.3,"precip":0,"wind":2.1},{"time":"2026-06-21T21:00","temp":23.6,"pressure":1022.8,"precip":0.1,"wind":3.9},{"time":"2026-06-21T22:00","temp":22.7,"pressure":1023.2,"precip":0,"wind":2.1},{"time":"2026-06-21T23:00","temp":21.6,"pressure":1023,"precip":0,"wind":2},{"time":"2026-06-22T00:00","temp":20.5,"pressure":1023.5,"precip":0,"wind":1.8},{"time":"2026-06-22T01:00","temp":19.6,"pressure":1023.6,"precip":0,"wind":1.1},{"time":"2026-06-22T02:00","temp":19.6,"pressure":1023.7,"precip":0,"wind":3.7},{"time":"2026-06-22T03:00","temp":18.9,"pressure":1023.4,"precip":0,"wind":2.2},{"time":"2026-06-22T04:00","temp":18.7,"pressure":1023.4,"precip":0,"wind":3.6},{"time":"2026-06-22T05:00","temp":18.5,"pressure":1023.7,"precip":0,"wind":3.8},{"time":"2026-06-22T06:00","temp":19.2,"pressure":1023.7,"precip":0,"wind":2.5},{"time":"2026-06-22T07:00","temp":21.2,"pressure":1024.1,"precip":0,"wind":5.4},{"time":"2026-06-22T08:00","temp":23.2,"pressure":1023.6,"precip":0,"wind":8},{"time":"2026-06-22T09:00","temp":24.9,"pressure":1024,"precip":0,"wind":10.1},{"time":"2026-06-22T10:00","temp":26.9,"pressure":1023.5,"precip":0,"wind":11.2},{"time":"2026-06-22T11:00","temp":28.7,"pressure":1023,"precip":0,"wind":11.2},{"time":"2026-06-22T12:00","temp":30,"pressure":1023,"precip":0,"wind":12.6},{"time":"2026-06-22T13:00","temp":30.2,"pressure":1021.9,"precip":0,"wind":12},{"time":"2026-06-22T14:00","temp":31.4,"pressure":1021.3,"precip":0,"wind":13.3},{"time":"2026-06-22T15:00","temp":31.9,"pressure":1020.3,"precip":0,"wind":14.2},{"time":"2026-06-22T16:00","temp":32.1,"pressure":1020,"precip":0,"wind":13.4},{"time":"2026-06-22T17:00","temp":31.5,"pressure":1019.6,"precip":0,"wind":16.1},{"time":"2026-06-22T18:00","temp":31.5,"pressure":1019.6,"precip":0,"wind":15.5},{"time":"2026-06-22T19:00","temp":30.2,"pressure":1019.9,"precip":0,"wind":10.7},{"time":"2026-06-22T20:00","temp":29,"pressure":1020,"precip":0,"wind":10},{"time":"2026-06-22T21:00","temp":25.9,"pressure":1020.4,"precip":0,"wind":8.2},{"time":"2026-06-22T22:00","temp":24.3,"pressure":1021.2,"precip":0,"wind":5.9},{"time":"2026-06-22T23:00","temp":22.6,"pressure":1021.4,"precip":0,"wind":4.1},{"time":"2026-06-23T00:00","temp":21.3,"pressure":1021.3,"precip":0,"wind":4.7},{"time":"2026-06-23T01:00","temp":20.4,"pressure":1021.2,"precip":0,"wind":3.7},{"time":"2026-06-23T02:00","temp":19.4,"pressure":1021.2,"precip":0,"wind":3.7},{"time":"2026-06-23T03:00","temp":18.4,"pressure":1021.1,"precip":0,"wind":2.7},{"time":"2026-06-23T04:00","temp":17.4,"pressure":1021.1,"precip":0,"wind":3.1},{"time":"2026-06-23T05:00","temp":16.7,"pressure":1021.1,"precip":0,"wind":2.9},{"time":"2026-06-23T06:00","temp":17.6,"pressure":1021.2,"precip":0,"wind":2.4},{"time":"2026-06-23T07:00","temp":20.3,"pressure":1021.5,"precip":0,"wind":4.7},{"time":"2026-06-23T08:00","temp":22.2,"pressure":1021.5,"precip":0,"wind":5},{"time":"2026-06-23T09:00","temp":24.4,"pressure":1021.3,"precip":0,"wind":6.8},{"time":"2026-06-23T10:00","temp":26.5,"pressure":1020.8,"precip":0,"wind":9.2},{"time":"2026-06-23T11:00","temp":28.2,"pressure":1020.4,"precip":0,"wind":12.3},{"time":"2026-06-23T12:00","temp":29.2,"pressure":1019.9,"precip":0,"wind":11.9},{"time":"2026-06-23T13:00","temp":29.7,"pressure":1019.5,"precip":0,"wind":12.7},{"time":"2026-06-23T14:00","temp":29.6,"pressure":1019,"precip":0,"wind":14.6},{"time":"2026-06-23T15:00","temp":30.8,"pressure":1018.5,"precip":0,"wind":11.2},{"time":"2026-06-23T16:00","temp":30.8,"pressure":1017.8,"precip":0,"wind":12.7},{"time":"2026-06-23T17:00","temp":30.2,"pressure":1017.2,"precip":0,"wind":10},{"time":"2026-06-23T18:00","temp":29.3,"pressure":1017.2,"precip":0,"wind":11.9},{"time":"2026-06-23T19:00","temp":28.1,"pressure":1017.4,"precip":0,"wind":10.3},{"time":"2026-06-23T20:00","temp":27.2,"pressure":1018,"precip":0,"wind":7.6},{"time":"2026-06-23T21:00","temp":24.4,"pressure":1018.3,"precip":0,"wind":5.2},{"time":"2026-06-23T22:00","temp":22.3,"pressure":1018.4,"precip":0,"wind":5.4},{"time":"2026-06-23T23:00","temp":20.5,"pressure":1018.9,"precip":0,"wind":3.4},{"time":"2026-06-24T00:00","temp":19.3,"pressure":1019.1,"precip":0,"wind":2.9},{"time":"2026-06-24T01:00","temp":17.9,"pressure":1019.2,"precip":0,"wind":2.9},{"time":"2026-06-24T02:00","temp":16.7,"pressure":1019.1,"precip":0,"wind":2.7},{"time":"2026-06-24T03:00","temp":16.3,"pressure":1019,"precip":0,"wind":3.8},{"time":"2026-06-24T04:00","temp":16,"pressure":1019,"precip":0,"wind":4.3},{"time":"2026-06-24T05:00","temp":15.7,"pressure":1019.3,"precip":0,"wind":4.8},{"time":"2026-06-24T06:00","temp":16.6,"pressure":1019.6,"precip":0,"wind":4.5},{"time":"2026-06-24T07:00","temp":18.5,"pressure":1019.9,"precip":0,"wind":6.5},{"time":"2026-06-24T08:00","temp":20.8,"pressure":1020.3,"precip":0,"wind":7.2},{"time":"2026-06-24T09:00","temp":23.1,"pressure":1020.4,"precip":0,"wind":7.8},{"time":"2026-06-24T10:00","temp":25.1,"pressure":1020.2,"precip":0,"wind":10.3},{"time":"2026-06-24T11:00","temp":26.6,"pressure":1020,"precip":0,"wind":13},{"time":"2026-06-24T12:00","temp":27.5,"pressure":1019.5,"precip":0,"wind":13.7},{"time":"2026-06-24T13:00","temp":28.6,"pressure":1018.9,"precip":0,"wind":14.9},{"time":"2026-06-24T14:00","temp":29.4,"pressure":1018.2,"precip":0,"wind":14.5},{"time":"2026-06-24T15:00","temp":29.8,"pressure":1017.7,"precip":0,"wind":14.9},{"time":"2026-06-24T16:00","temp":29.9,"pressure":1017.4,"precip":0,"wind":14.8},{"time":"2026-06-24T17:00","temp":29.6,"pressure":1017.1,"precip":0,"wind":14.4},{"time":"2026-06-24T18:00","temp":29,"pressure":1016.8,"precip":0,"wind":12.6},{"time":"2026-06-24T19:00","temp":28,"pressure":1016.9,"precip":0,"wind":11.5},{"time":"2026-06-24T20:00","temp":26.4,"pressure":1017.1,"precip":0,"wind":7.6},{"time":"2026-06-24T21:00","temp":23.1,"pressure":1017.6,"precip":0,"wind":6},{"time":"2026-06-24T22:00","temp":20.9,"pressure":1017.8,"precip":0,"wind":5.8},{"time":"2026-06-24T23:00","temp":19.8,"pressure":1018.1,"precip":0,"wind":5},{"time":"2026-06-25T00:00","temp":19.7,"pressure":1018.4,"precip":0,"wind":4.6},{"time":"2026-06-25T01:00","temp":18.9,"pressure":1018.4,"precip":0,"wind":4.1},{"time":"2026-06-25T02:00","temp":18.1,"pressure":1018.5,"precip":0,"wind":3.7},{"time":"2026-06-25T03:00","temp":17.2,"pressure":1018.4,"precip":0,"wind":3.6},{"time":"2026-06-25T04:00","temp":16.5,"pressure":1018.5,"precip":0,"wind":4.1},{"time":"2026-06-25T05:00","temp":16.1,"pressure":1018.4,"precip":0,"wind":4.1},{"time":"2026-06-25T06:00","temp":16.7,"pressure":1018.5,"precip":0,"wind":3.7},{"time":"2026-06-25T07:00","temp":18.9,"pressure":1018.8,"precip":0,"wind":2.9},{"time":"2026-06-25T08:00","temp":22,"pressure":1019.1,"precip":0,"wind":5.4},{"time":"2026-06-25T09:00","temp":24.5,"pressure":1019,"precip":0,"wind":7.2},{"time":"2026-06-25T10:00","temp":26.8,"pressure":1018.6,"precip":0,"wind":8.6},{"time":"2026-06-25T11:00","temp":28.7,"pressure":1018.3,"precip":0,"wind":9.7},{"time":"2026-06-25T12:00","temp":30.1,"pressure":1018,"precip":0,"wind":10.2},{"time":"2026-06-25T13:00","temp":31.2,"pressure":1017.5,"precip":0,"wind":10.2},{"time":"2026-06-25T14:00","temp":32.1,"pressure":1017,"precip":0,"wind":10.3},{"time":"2026-06-25T15:00","temp":32.6,"pressure":1016.5,"precip":0,"wind":10.6},{"time":"2026-06-25T16:00","temp":32.8,"pressure":1016,"precip":0,"wind":11.2},{"time":"2026-06-25T17:00","temp":32.6,"pressure":1015.6,"precip":0,"wind":10.8},{"time":"2026-06-25T18:00","temp":31.9,"pressure":1015.5,"precip":0,"wind":9},{"time":"2026-06-25T19:00","temp":30.8,"pressure":1015.5,"precip":0,"wind":7.1},{"time":"2026-06-25T20:00","temp":29.3,"pressure":1015.7,"precip":0,"wind":5},{"time":"2026-06-25T21:00","temp":27.1,"pressure":1016,"precip":0,"wind":4.2},{"time":"2026-06-25T22:00","temp":24.5,"pressure":1016.4,"precip":0,"wind":4.3},{"time":"2026-06-25T23:00","temp":22.4,"pressure":1016.7,"precip":0,"wind":5.4}]},"vysoka":{"hours":[{"time":"2026-06-20T00:00","temp":23.4,"pressure":1019.4,"precip":0,"wind":7.1},{"time":"2026-06-20T01:00","temp":23.1,"pressure":1019.1,"precip":0,"wind":7.9},{"time":"2026-06-20T02:00","temp":22.4,"pressure":1018.7,"precip":0,"wind":6.1},{"time":"2026-06-20T03:00","temp":21.8,"pressure":1019.2,"precip":0,"wind":3.8},{"time":"2026-06-20T04:00","temp":20.8,"pressure":1019.1,"precip":0,"wind":4.1},{"time":"2026-06-20T05:00","temp":20.5,"pressure":1018.1,"precip":0,"wind":6.8},{"time":"2026-06-20T06:00","temp":22.1,"pressure":1018.8,"precip":0,"wind":7.8},{"time":"2026-06-20T07:00","temp":25,"pressure":1019.3,"precip":0,"wind":10.5},{"time":"2026-06-20T08:00","temp":26.9,"pressure":1019.2,"precip":0,"wind":12.8},{"time":"2026-06-20T09:00","temp":28.2,"pressure":1020,"precip":0,"wind":14.4},{"time":"2026-06-20T10:00","temp":29.2,"pressure":1020.2,"precip":0,"wind":17.1},{"time":"2026-06-20T11:00","temp":30.5,"pressure":1020,"precip":0,"wind":18},{"time":"2026-06-20T12:00","temp":32,"pressure":1019.7,"precip":0,"wind":16.5},{"time":"2026-06-20T13:00","temp":32.7,"pressure":1019.7,"precip":0,"wind":11.8},{"time":"2026-06-20T14:00","temp":33.5,"pressure":1019.7,"precip":0,"wind":12.3},{"time":"2026-06-20T15:00","temp":33.8,"pressure":1018.7,"precip":0,"wind":14.7},{"time":"2026-06-20T16:00","temp":30.6,"pressure":1020.1,"precip":0,"wind":27.3},{"time":"2026-06-20T17:00","temp":31.8,"pressure":1018.7,"precip":0,"wind":22.4},{"time":"2026-06-20T18:00","temp":30.6,"pressure":1019.9,"precip":0,"wind":17.6},{"time":"2026-06-20T19:00","temp":29.6,"pressure":1019.7,"precip":0,"wind":14.8},{"time":"2026-06-20T20:00","temp":29.7,"pressure":1019.8,"precip":0,"wind":7.9},{"time":"2026-06-20T21:00","temp":27.7,"pressure":1020.3,"precip":0.1,"wind":7.2},{"time":"2026-06-20T22:00","temp":25.8,"pressure":1021.5,"precip":0,"wind":6.1},{"time":"2026-06-20T23:00","temp":24.2,"pressure":1021.6,"precip":3.1,"wind":6.9},{"time":"2026-06-21T00:00","temp":23.7,"pressure":1022,"precip":0,"wind":3.1},{"time":"2026-06-21T01:00","temp":22,"pressure":1023.2,"precip":0,"wind":8},{"time":"2026-06-21T02:00","temp":21.8,"pressure":1022.4,"precip":0,"wind":4.4},{"time":"2026-06-21T03:00","temp":20.1,"pressure":1022.8,"precip":0,"wind":7.3},{"time":"2026-06-21T04:00","temp":20,"pressure":1022.9,"precip":0,"wind":5.7},{"time":"2026-06-21T05:00","temp":19.1,"pressure":1022.6,"precip":0,"wind":1.5},{"time":"2026-06-21T06:00","temp":19.7,"pressure":1023.7,"precip":0,"wind":3.4},{"time":"2026-06-21T07:00","temp":21.2,"pressure":1023.9,"precip":0,"wind":2.2},{"time":"2026-06-21T08:00","temp":23,"pressure":1024.4,"precip":0,"wind":6.1},{"time":"2026-06-21T09:00","temp":25.4,"pressure":1024,"precip":0,"wind":7.2},{"time":"2026-06-21T10:00","temp":27.6,"pressure":1024,"precip":0,"wind":8.7},{"time":"2026-06-21T11:00","temp":29.7,"pressure":1024,"precip":0,"wind":10.5},{"time":"2026-06-21T12:00","temp":31.5,"pressure":1023.3,"precip":0,"wind":11.9},{"time":"2026-06-21T13:00","temp":33,"pressure":1022.7,"precip":0,"wind":12.4},{"time":"2026-06-21T14:00","temp":33.3,"pressure":1022.4,"precip":0,"wind":12.6},{"time":"2026-06-21T15:00","temp":34,"pressure":1022.2,"precip":0,"wind":12.1},{"time":"2026-06-21T16:00","temp":34.5,"pressure":1021.7,"precip":0,"wind":13.2},{"time":"2026-06-21T17:00","temp":34.2,"pressure":1021.2,"precip":0,"wind":10.3},{"time":"2026-06-21T18:00","temp":33,"pressure":1021,"precip":0,"wind":8.1},{"time":"2026-06-21T19:00","temp":29.9,"pressure":1022.2,"precip":0,"wind":5.8},{"time":"2026-06-21T20:00","temp":24.2,"pressure":1022.7,"precip":0,"wind":7.4},{"time":"2026-06-21T21:00","temp":24.7,"pressure":1022.6,"precip":0,"wind":5},{"time":"2026-06-21T22:00","temp":23.1,"pressure":1023.2,"precip":0,"wind":5.2},{"time":"2026-06-21T23:00","temp":22,"pressure":1022.9,"precip":0,"wind":4.4},{"time":"2026-06-22T00:00","temp":21.1,"pressure":1023.5,"precip":0,"wind":4.7},{"time":"2026-06-22T01:00","temp":20.2,"pressure":1023.5,"precip":0,"wind":4},{"time":"2026-06-22T02:00","temp":19.9,"pressure":1023.7,"precip":0,"wind":6.2},{"time":"2026-06-22T03:00","temp":19.8,"pressure":1023.4,"precip":0,"wind":6.8},{"time":"2026-06-22T04:00","temp":19.7,"pressure":1023.3,"precip":0,"wind":7.5},{"time":"2026-06-22T05:00","temp":19.4,"pressure":1023.7,"precip":0,"wind":6.2},{"time":"2026-06-22T06:00","temp":20,"pressure":1023.6,"precip":0,"wind":4.6},{"time":"2026-06-22T07:00","temp":21.7,"pressure":1024,"precip":0,"wind":7.6},{"time":"2026-06-22T08:00","temp":24,"pressure":1023.5,"precip":0,"wind":12.6},{"time":"2026-06-22T09:00","temp":25.7,"pressure":1024,"precip":0,"wind":15.2},{"time":"2026-06-22T10:00","temp":27.4,"pressure":1023.5,"precip":0,"wind":15.1},{"time":"2026-06-22T11:00","temp":29.2,"pressure":1022.9,"precip":0,"wind":14.8},{"time":"2026-06-22T12:00","temp":29.9,"pressure":1023,"precip":0,"wind":16.6},{"time":"2026-06-22T13:00","temp":30.7,"pressure":1021.8,"precip":0,"wind":16.8},{"time":"2026-06-22T14:00","temp":31.3,"pressure":1021.3,"precip":0,"wind":16.7},{"time":"2026-06-22T15:00","temp":32.1,"pressure":1020.2,"precip":0,"wind":17},{"time":"2026-06-22T16:00","temp":32.4,"pressure":1019.8,"precip":0,"wind":19.4},{"time":"2026-06-22T17:00","temp":32.1,"pressure":1019.5,"precip":0,"wind":21.5},{"time":"2026-06-22T18:00","temp":31.7,"pressure":1019.5,"precip":0,"wind":22.4},{"time":"2026-06-22T19:00","temp":30.7,"pressure":1019.8,"precip":0,"wind":14.6},{"time":"2026-06-22T20:00","temp":29.6,"pressure":1019.9,"precip":0,"wind":14.1},{"time":"2026-06-22T21:00","temp":27,"pressure":1020.3,"precip":0,"wind":10.7},{"time":"2026-06-22T22:00","temp":25,"pressure":1021.1,"precip":0,"wind":8.9},{"time":"2026-06-22T23:00","temp":23.4,"pressure":1021.4,"precip":0,"wind":6.3},{"time":"2026-06-23T00:00","temp":21.8,"pressure":1021.3,"precip":0,"wind":7.6},{"time":"2026-06-23T01:00","temp":20.8,"pressure":1021.2,"precip":0,"wind":6.5},{"time":"2026-06-23T02:00","temp":19.8,"pressure":1021.2,"precip":0,"wind":6.1},{"time":"2026-06-23T03:00","temp":18.8,"pressure":1021.1,"precip":0,"wind":5.8},{"time":"2026-06-23T04:00","temp":18,"pressure":1021.1,"precip":0,"wind":6},{"time":"2026-06-23T05:00","temp":17.7,"pressure":1021.1,"precip":0,"wind":6.8},{"time":"2026-06-23T06:00","temp":18.6,"pressure":1021.1,"precip":0,"wind":5.8},{"time":"2026-06-23T07:00","temp":20.3,"pressure":1021.5,"precip":0,"wind":8},{"time":"2026-06-23T08:00","temp":22.4,"pressure":1021.4,"precip":0,"wind":8.7},{"time":"2026-06-23T09:00","temp":24.7,"pressure":1021.3,"precip":0,"wind":10.1},{"time":"2026-06-23T10:00","temp":26.5,"pressure":1020.8,"precip":0,"wind":13},{"time":"2026-06-23T11:00","temp":28.2,"pressure":1020.5,"precip":0,"wind":16.6},{"time":"2026-06-23T12:00","temp":29.2,"pressure":1019.9,"precip":0,"wind":15.9},{"time":"2026-06-23T13:00","temp":29.8,"pressure":1019.4,"precip":0,"wind":16.3},{"time":"2026-06-23T14:00","temp":30,"pressure":1019.1,"precip":0,"wind":17.3},{"time":"2026-06-23T15:00","temp":30.9,"pressure":1018.4,"precip":0,"wind":15.4},{"time":"2026-06-23T16:00","temp":31.1,"pressure":1017.6,"precip":0,"wind":16.5},{"time":"2026-06-23T17:00","temp":30.4,"pressure":1017.1,"precip":0,"wind":12.7},{"time":"2026-06-23T18:00","temp":29.6,"pressure":1017.1,"precip":0,"wind":16.6},{"time":"2026-06-23T19:00","temp":28.7,"pressure":1017.3,"precip":0,"wind":15},{"time":"2026-06-23T20:00","temp":27.9,"pressure":1017.9,"precip":0,"wind":11.3},{"time":"2026-06-23T21:00","temp":25.2,"pressure":1018.3,"precip":0,"wind":7.4},{"time":"2026-06-23T22:00","temp":23.1,"pressure":1018.4,"precip":0,"wind":9.2},{"time":"2026-06-23T23:00","temp":20.9,"pressure":1018.9,"precip":0,"wind":5.8},{"time":"2026-06-24T00:00","temp":19.3,"pressure":1019.1,"precip":0,"wind":5.6},{"time":"2026-06-24T01:00","temp":18,"pressure":1019.3,"precip":0,"wind":5},{"time":"2026-06-24T02:00","temp":17.2,"pressure":1019.1,"precip":0,"wind":5.4},{"time":"2026-06-24T03:00","temp":16.7,"pressure":1019.1,"precip":0,"wind":5.8},{"time":"2026-06-24T04:00","temp":16.5,"pressure":1019,"precip":0,"wind":7.3},{"time":"2026-06-24T05:00","temp":16.2,"pressure":1019.2,"precip":0,"wind":7.9},{"time":"2026-06-24T06:00","temp":16.7,"pressure":1019.6,"precip":0,"wind":7.6},{"time":"2026-06-24T07:00","temp":18.4,"pressure":1019.9,"precip":0,"wind":8.8},{"time":"2026-06-24T08:00","temp":20.9,"pressure":1020.3,"precip":0,"wind":9.7},{"time":"2026-06-24T09:00","temp":23.2,"pressure":1020.4,"precip":0,"wind":10.9},{"time":"2026-06-24T10:00","temp":25.5,"pressure":1020.2,"precip":0,"wind":12.1},{"time":"2026-06-24T11:00","temp":27.1,"pressure":1020,"precip":0,"wind":13.4},{"time":"2026-06-24T12:00","temp":28.2,"pressure":1019.5,"precip":0,"wind":12.6},{"time":"2026-06-24T13:00","temp":29.3,"pressure":1018.9,"precip":0,"wind":13.7},{"time":"2026-06-24T14:00","temp":30.1,"pressure":1018.2,"precip":0,"wind":13},{"time":"2026-06-24T15:00","temp":30.5,"pressure":1017.7,"precip":0,"wind":13.7},{"time":"2026-06-24T16:00","temp":30.6,"pressure":1017.4,"precip":0,"wind":13.3},{"time":"2026-06-24T17:00","temp":30.3,"pressure":1017,"precip":0,"wind":12.6},{"time":"2026-06-24T18:00","temp":29.9,"pressure":1016.7,"precip":0,"wind":11.7},{"time":"2026-06-24T19:00","temp":28.9,"pressure":1016.8,"precip":0,"wind":11.2},{"time":"2026-06-24T20:00","temp":27.5,"pressure":1017,"precip":0,"wind":8.2},{"time":"2026-06-24T21:00","temp":24,"pressure":1017.5,"precip":0,"wind":5.1},{"time":"2026-06-24T22:00","temp":21.6,"pressure":1017.7,"precip":0,"wind":4.1},{"time":"2026-06-24T23:00","temp":20.1,"pressure":1018,"precip":0,"wind":3.6},{"time":"2026-06-25T00:00","temp":19,"pressure":1018.4,"precip":0,"wind":4.6},{"time":"2026-06-25T01:00","temp":18.3,"pressure":1018.4,"precip":0,"wind":4.7},{"time":"2026-06-25T02:00","temp":17.6,"pressure":1018.5,"precip":0,"wind":4.7},{"time":"2026-06-25T03:00","temp":16.9,"pressure":1018.5,"precip":0,"wind":4.7},{"time":"2026-06-25T04:00","temp":16.4,"pressure":1018.6,"precip":0,"wind":4.7},{"time":"2026-06-25T05:00","temp":16.1,"pressure":1018.5,"precip":0,"wind":4.3},{"time":"2026-06-25T06:00","temp":16.7,"pressure":1018.6,"precip":0,"wind":4.3},{"time":"2026-06-25T07:00","temp":19.5,"pressure":1018.7,"precip":0,"wind":4.7},{"time":"2026-06-25T08:00","temp":22.6,"pressure":1019.1,"precip":0,"wind":6.9},{"time":"2026-06-25T09:00","temp":25.2,"pressure":1019,"precip":0,"wind":9.1},{"time":"2026-06-25T10:00","temp":27.6,"pressure":1018.6,"precip":0,"wind":8.7},{"time":"2026-06-25T11:00","temp":29.5,"pressure":1018.2,"precip":0,"wind":9.7},{"time":"2026-06-25T12:00","temp":30.8,"pressure":1018,"precip":0,"wind":10.1},{"time":"2026-06-25T13:00","temp":32,"pressure":1017.5,"precip":0,"wind":9.8},{"time":"2026-06-25T14:00","temp":32.9,"pressure":1016.9,"precip":0,"wind":9.8},{"time":"2026-06-25T15:00","temp":33.4,"pressure":1016.4,"precip":0,"wind":10.1},{"time":"2026-06-25T16:00","temp":33.6,"pressure":1015.9,"precip":0,"wind":10.5},{"time":"2026-06-25T17:00","temp":33.4,"pressure":1015.5,"precip":0,"wind":10.2},{"time":"2026-06-25T18:00","temp":32.8,"pressure":1015.4,"precip":0,"wind":8.8},{"time":"2026-06-25T19:00","temp":31.8,"pressure":1015.4,"precip":0,"wind":6.8},{"time":"2026-06-25T20:00","temp":30.3,"pressure":1015.5,"precip":0,"wind":5},{"time":"2026-06-25T21:00","temp":28,"pressure":1015.8,"precip":0,"wind":3.6},{"time":"2026-06-25T22:00","temp":25.1,"pressure":1016.2,"precip":0,"wind":3.3},{"time":"2026-06-25T23:00","temp":22.8,"pressure":1016.5,"precip":0,"wind":3.3}],"shmu":{"levelCm":101,"waterTemp":27.8,"fetchedAt":"2026-06-22T11:52:20.233Z"}}};
-/* === MORNING_DATA_END === */
-
-function buildUrl(lat, lon){
-  return `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
-         `&hourly=temperature_2m,pressure_msl,precipitation,wind_speed_10m` +
-         `&past_days=2&forecast_days=4&timezone=Europe%2FBratislava`;
-}
-
-function parseOpenMeteo(json){
-  const t = json.hourly.time;
-  const hours = t.map((time, i) => ({
-    time,
-    temp: json.hourly.temperature_2m[i],
-    pressure: json.hourly.pressure_msl[i],
-    precip: json.hourly.precipitation[i] ?? 0,
-    wind: json.hourly.wind_speed_10m[i]
-  }));
-  return hours;
-}
-
-function findNowIndex(hours){
-  const now = new Date();
-  // compare against local Europe/Bratislava strings (YYYY-MM-DDTHH:00)
-  const pad = n => String(n).padStart(2,'0');
-  // Build a Bratislava-local "now" string using Intl to avoid relying on browser tz.
-  const fmt = new Intl.DateTimeFormat('sv-SE', { timeZone:'Europe/Bratislava', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', hour12:false });
-  const parts = fmt.formatToParts(now).reduce((a,p)=>{a[p.type]=p.value;return a;},{});
-  const nowStr = `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:00`;
-  let best = 0, bestDiff = Infinity;
-  for (let i=0;i<hours.length;i++){
-    const diff = Math.abs(new Date(hours[i].time) - new Date(nowStr));
-    if (diff < bestDiff){ bestDiff = diff; best = i; }
-  }
-  return best;
-}
-
-const state = { data:{}, scores:{}, nowIdx:{}, stale:{}, activeGraphLoc:'devin', mode:'general', bakedAt:null, liveAt:null };
-
-function hydrateFromPreloaded(){
-  if (!PRELOADED) return false;
-  let any = false;
-  for (const key of Object.keys(LOCATIONS)){
-    if (PRELOADED[key] && PRELOADED[key].hours && PRELOADED[key].hours.length){
-      const hours = PRELOADED[key].hours;
-      state.data[key] = hours;
-      state.nowIdx[key] = findNowIndex(hours);
-      state.scores[key] = hours.map((_, i) => scoreHour(hours, i, state.mode));
-      state.stale[key] = false;
-      any = true;
+function hydratePreloaded(){
+  if(!PRELOADED) return false;
+  let any=false;
+  for(const k of Object.keys(LOCATIONS)){
+    if(!PRELOADED[k]) continue;
+    // always load SHMU data if present (even without weather hours)
+    if(PRELOADED[k].shmu) state.shmu[k]=PRELOADED[k].shmu;
+    if(PRELOADED[k].flood) state.flood[k]=PRELOADED[k].flood;
+    if(PRELOADED[k].hours){
+      state.data[k]=PRELOADED[k].hours;
+      state.nowIdx[k]=findNowIndex(state.data[k]);
+      state.scores[k]=state.data[k].map((_,i)=>scoreHour(state.data[k],i,state.mode,k));
+      state.stale[k]=false; any=true;
     }
   }
-  if (any) state.bakedAt = PRELOADED.generatedAt || null;
+  if(PRELOADED.generatedAt) state.bakedAt=PRELOADED.generatedAt;
   return any;
 }
-
-function recomputeScores(){
-  for (const key of Object.keys(LOCATIONS)){
-    if (state.data[key]) state.scores[key] = state.data[key].map((_, i) => scoreHour(state.data[key], i, state.mode));
+function recompute(){
+  for(const k of Object.keys(LOCATIONS)){
+    if(state.data[k]) state.scores[k]=state.data[k].map((_,i)=>scoreHour(state.data[k],i,state.mode,k));
   }
+}
+
+async function fetchAll(silent){
+  if(!silent) showSkeletons();
+  let gotAny=false;
+  for(const k of Object.keys(LOCATIONS)){
+    const loc=LOCATIONS[k];
+    try{
+      const res=await fetch(weatherUrl(loc.lat,loc.lon));
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const hours=parseWeather(await res.json());
+      state.data[k]=hours;
+      state.nowIdx[k]=findNowIndex(hours);
+      state.scores[k]=hours.map((_,i)=>scoreHour(hours,i,state.mode,k));
+      state.stale[k]=false; gotAny=true;
+      // river discharge
+      if(loc.floodLat){
+        try{
+          const fr=await fetch(floodUrl(loc.floodLat,loc.floodLon));
+          if(fr.ok) state.flood[k]=parseFlood(await fr.json());
+        }catch(e){ /* flood is optional */ }
+      }
+      try{
+        await window.storage.set('wx:'+k,JSON.stringify({hours,fetchedAt:Date.now()}),false);
+      }catch(e){}
+    }catch(err){
+      if(!state.data[k]){
+        try{
+          const c=await window.storage.get('wx:'+k,false);
+          if(c&&c.value){
+            const p=JSON.parse(c.value);
+            state.data[k]=p.hours; state.stale[k]=true;
+            state.nowIdx[k]=findNowIndex(p.hours);
+            state.scores[k]=p.hours.map((_,i)=>scoreHour(p.hours,i,state.mode,k));
+            gotAny=true;
+          }
+        }catch(e){}
+      }
+    }
+  }
+  if(gotAny) state.liveAt=Date.now();
+  render();
 }
 
 /* =========================================================================
    RENDERING
    ========================================================================= */
-function fmtTime(iso){
-  const [d,t] = iso.split('T');
-  const [y,m,day] = d.split('-');
-  const dayNames = ['Ne','Po','Ut','St','Št','Pi','So'];
-  const dateObj = new Date(d + 'T12:00:00');
-  return `${dayNames[dateObj.getDay()]} ${day}.${m}. ${t}`;
-}
+function colorForScore(c){return{good:'var(--ok)',ok:'var(--accent)',meh:'var(--mid)',bad:'var(--warn)'}[c];}
 
-function describeArc(cx, cy, r, scoreStart, scoreEnd){
-  const toPoint = (s) => {
-    const angleDeg = 180 - (s/100)*180;
-    const a = angleDeg * Math.PI/180;
-    return { x: cx + r*Math.cos(a), y: cy - r*Math.sin(a) };
-  };
-  const p1 = toPoint(scoreStart), p2 = toPoint(scoreEnd);
-  const span = (scoreEnd-scoreStart)/100*180;
-  const largeArc = span > 180 ? 1 : 0;
-  return `M ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} A ${r} ${r} 0 ${largeArc} 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
-}
-
-function needleDialSvg(score, idSuffix){
-  const cx=85, cy=88, bandR=70, tickR1=60, tickR2=78, needleLen=56;
-  const zones = [
-    {a:0,  b:35,  color:'var(--rust)'},
-    {a:35, b:55,  color:'#C98A3A'},
-    {a:55, b:75,  color:'#9AB36B'},
-    {a:75, b:100, color:'var(--gold)'}
+function dialSvg(score,key){
+  // compact half-arc: 160px wide, 100px tall viewBox
+  const cx=80,cy=86,r=62;
+  const zones=[
+    {a:0,b:35,col:'var(--warn)'},{a:35,b:55,col:'var(--mid)'},
+    {a:55,b:75,col:'var(--accent)'},{a:75,b:100,col:'var(--ok)'}
   ];
-  const bandPaths = zones.map(z =>
-    `<path d="${describeArc(cx,cy,bandR,z.a,z.b)}" stroke="${z.color}" stroke-width="11" fill="none" stroke-linecap="butt"/>`
-  ).join('');
-  const ticks = [0,25,50,75,100].map(s=>{
-    const angleDeg = 180-(s/100)*180, a=angleDeg*Math.PI/180;
-    const x1=cx+tickR1*Math.cos(a), y1=cy-tickR1*Math.sin(a);
-    const x2=cx+tickR2*Math.cos(a), y2=cy-tickR2*Math.sin(a);
-    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="rgba(242,236,218,0.32)" stroke-width="2"/>`;
+  function pt(s){
+    const a=(180-s*1.8)*Math.PI/180;
+    return{x:cx+r*Math.cos(a),y:cy-r*Math.sin(a)};
+  }
+  const bands=zones.map(z=>{
+    const p1=pt(z.a),p2=pt(z.b),span=(z.b-z.a)*1.8;
+    return `<path d="M${p1.x.toFixed(1)} ${p1.y.toFixed(1)} A${r} ${r} 0 ${span>180?1:0} 1 ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}" stroke="${z.col}" stroke-width="10" fill="none" stroke-linecap="butt"/>`;
   }).join('');
-  return `<svg viewBox="0 0 170 98" class="dial-svg" data-score="${score}" data-id="${idSuffix}">
-    ${bandPaths}
-    ${ticks}
-    <g class="needle" id="needle-${idSuffix}" style="transform-origin:${cx}px ${cy}px; transform:rotate(-90deg);">
-      <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${(cy-needleLen).toFixed(1)}" stroke="var(--foam)" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="${cx}" cy="${cy}" r="6.5" fill="var(--gold)" stroke="#1B1306" stroke-width="1.5"/>
+  const ticks=[0,25,50,75,100].map(s=>{
+    const a=(180-s*1.8)*Math.PI/180;
+    const x1=cx+(r-7)*Math.cos(a),y1=cy-(r-7)*Math.sin(a);
+    const x2=cx+(r+5)*Math.cos(a),y2=cy-(r+5)*Math.sin(a);
+    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>`;
+  }).join('');
+  const needleDeg=score*1.8-90;
+  const nLen=48;
+  return `<svg viewBox="0 0 160 92" class="dial-svg" data-score="${score}" data-id="${key}">
+    ${bands}${ticks}
+    <g id="needle-${key}" style="transform-origin:${cx}px ${cy}px;transform:rotate(-90deg);transition:transform 1.1s cubic-bezier(.22,1,.36,1);">
+      <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${(cy-nLen).toFixed(1)}" stroke="var(--txt)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="${cx}" cy="${cy}" r="5.5" fill="${colorForScore(scoreHour(state.data[key]||[{time:'2000-01-01T12:00',pressure:1013,temp:15,precip:0,wind:5,soilTemp:12}],0,state.mode,key).color)}" stroke="#080F12" stroke-width="1.5"/>
     </g>
   </svg>`;
 }
 
-function animateNeedles(root){
-  (root || document).querySelectorAll('.dial-svg').forEach(svg=>{
-    const score = parseFloat(svg.dataset.score);
-    const needle = svg.querySelector('.needle');
-    const deg = score*1.8 - 90;
-    requestAnimationFrame(()=>{
-      requestAnimationFrame(()=>{ needle.style.transform = `rotate(${deg}deg)`; });
-    });
+function animNeedles(root){
+  (root||document).querySelectorAll('.dial-svg').forEach(svg=>{
+    const sc=parseFloat(svg.dataset.score);
+    const n=svg.querySelector('g[id^="needle-"]');
+    if(n) requestAnimationFrame(()=>requestAnimationFrame(()=>{n.style.transform=`rotate(${sc*1.8-90}deg)`;}));
   });
 }
 
-function renderCard(key, hours, scores, nowIdx, stale){
-  const loc = LOCATIONS[key];
-  const cur = scores[nowIdx];
-  // windows computed over the next few calendar days, restricted to today+future only
-  const futureWindows = findBestWindows(hours, scores, 4).filter(w => new Date(w.time) >= new Date(hours[nowIdx].time.slice(0,10)+'T00:00:00'));
+const DAY=['Ne','Po','Ut','St','Št','Pi','So'];
+function dayStr(iso){
+  const d=new Date(iso.slice(0,10)+'T12:00:00');
+  return `${DAY[d.getDay()]} ${iso.slice(8,10)}.${iso.slice(5,7)}.`;
+}
 
-  const reasonsHtml = cur.reasons.slice(0,3).map(r => `<li>${r}</li>`).join('');
-  const windowsHtml = futureWindows.slice(0,3).map(w => {
-    const d = new Date(w.time.slice(0,10)+'T12:00:00');
-    const dayNames = ['Ne','Po','Ut','St','Št','Pi','So'];
-    const label = `${dayNames[d.getDay()]} ${w.time.slice(11,16)}`;
-    return `<div class="window-item">
-      <span class="window-day"><span class="dot dot-${w.score.color}"></span>${label}</span>
-      <span class="window-score c-${w.score.color}">${w.score.score} · ${w.score.label}</span>
-    </div>`;
-  }).join('');
+function spaLabel(levelCm, spa){
+  if(!spa||levelCm==null) return null;
+  if(levelCm>=spa[2]) return {text:'SPA 3 — POVODEŇ',col:'var(--warn)',bg:'rgba(255,112,67,0.18)'};
+  if(levelCm>=spa[1]) return {text:'SPA 2 — VAROVANIE',col:'#FF8F00',bg:'rgba(255,143,0,0.15)'};
+  if(levelCm>=spa[0]) return {text:'SPA 1 — POZORNOSŤ',col:'var(--mid)',bg:'rgba(255,167,38,0.12)'};
+  return {text:'Hladina normálna',col:'var(--accent)',bg:'rgba(0,201,167,0.08)'};
+}
 
-  const staleNote = stale ? `<p class="dial-meta" style="color:var(--rust-soft)">⚠ offline — posledné uložené dáta</p>` : '';
+function renderCard(k){
+  const loc=LOCATIONS[k];
+  const hours=state.data[k];
+  const scores=state.scores[k];
+  const ni=state.nowIdx[k];
+  if(!hours||!scores) return `<div class="loc-card"><div style="padding:20px" class="sk" style="width:70%"></div></div>`;
+  const cur=scores[ni];
+  const h=hours[ni];
 
-  return `
-    <div class="card">
-      <div class="card-head">
-        <div>
-          <p class="loc-name">${loc.name}</p>
-          <p class="loc-sub">${loc.sub}</p>
-        </div>
+  // SHMU real data (baked in by morning script, or null)
+  const shmu=state.shmu[k]||null;
+  const waterTempReal=shmu?.waterTemp??null;
+  const waterLevelCm=shmu?.levelCm??null;
+  const waterTempEst=h.soilTemp!=null?(loc.type==='river'?h.soilTemp+0.5:h.soilTemp+1.0):null;
+  const waterTempDisplay=waterTempReal!=null
+    ?{val:waterTempReal.toFixed(1)+'°C', sub:'SHMÚ'}
+    :(waterTempEst!=null?{val:'~'+waterTempEst.toFixed(1)+'°C', sub:'odhad'}:null);
+
+  // Use real water temp in sumec scoring context (just for display flag; scoring already used soilTemp)
+  const spa=loc.spa?spaLabel(waterLevelCm, loc.spa):null;
+
+  // discharge
+  const todayStr=hours[ni].time.slice(0,10);
+  const flood=state.flood[k];
+  const todayFlood=flood?flood.find(f=>f.date===todayStr):null;
+
+  // windows
+  const futureSt=hours.findIndex(hh=>hh.time.slice(0,10)>=todayStr);
+  const futureH=futureSt>=0?hours.slice(futureSt):hours;
+  const futureS=futureSt>=0?scores.slice(futureSt):scores;
+  const wins=findBestWindows(futureH,futureS,3);
+  const topReasons=cur.reasons.slice(0,2);
+
+  const statsCols=[
+    {label:'Tlak',val:Math.round(h.pressure)+' hPa',sub:''},
+    {label:'Teplota vzduchu',val:h.temp.toFixed(1)+'°C',sub:''},
+    ...(waterTempDisplay?[{label:'Teplota vody',val:waterTempDisplay.val,sub:waterTempDisplay.sub}]:[]),
+    ...(waterLevelCm!=null?[{label:'Vodný stav',val:waterLevelCm+' cm',sub:'SHMÚ'}]:[]),
+    ...(todayFlood&&loc.type==='river'?[{label:'Prietok',val:todayFlood.discharge!=null?Math.round(todayFlood.discharge)+' m³/s':'—',sub:'GloFAS'}]:[]),
+    {label:'Vietor',val:Math.round(h.wind)+' km/h',sub:''},
+    {label:'Zrážky',val:h.precip.toFixed(1)+' mm',sub:''},
+  ];
+
+  const shmuLink=loc.shmuId
+    ?`<a href="https://www.shmu.sk/sk/?page=765&station_id=${loc.shmuId}" target="_blank" style="font-size:11px;color:var(--txt3);text-decoration:none;font-family:'JetBrains Mono',monospace;">↗ SHMÚ stanica</a>`
+    :'';
+
+  return `<div class="loc-card">
+    <div class="loc-header">
+      <div>
+        <div class="loc-name">${loc.name}</div>
+        <div class="loc-sub">${loc.sub}</div>
       </div>
-      <div class="dial-wrap">
-        ${needleDialSvg(cur.score, key)}
-        <div class="dial-readout">
-          <div class="dial-num c-${cur.color}">${cur.score}</div>
-          <div class="dial-label c-${cur.color}">${cur.label}</div>
-          <div class="dial-meta">${Math.round(hours[nowIdx].pressure)} hPa · ${hours[nowIdx].temp.toFixed(1)}°C</div>
-        </div>
-      </div>
-      ${staleNote}
-      <ul class="reasons">${reasonsHtml}</ul>
-      <div class="windows">
-        <p class="windows-title">Najlepšie okná — najbližšie dni</p>
-        ${windowsHtml || '<p class="dial-meta">Nepodarilo sa nájsť výrazné okno.</p>'}
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;">
+        <span class="loc-badge ${loc.badge}">${loc.type==='river'?'Rieka':'Jazero'}</span>
+        ${shmuLink}
       </div>
     </div>
-  `;
+    ${spa?`<div style="padding:6px 14px;font-size:12px;font-weight:600;background:${spa.bg};color:${spa.col};border-bottom:1px solid var(--border);">● ${spa.text}${waterLevelCm!=null&&loc.spa?` · ${loc.spa[0]-waterLevelCm} cm do SPA 1`:''}${waterLevelCm!=null&&loc.spa&&loc.spa[0]-waterLevelCm<0?' ⚠':''}</div>`:''}
+    <div class="dial-section">
+      ${dialSvg(cur.score,k)}
+      <div class="dial-info">
+        <div class="dial-score c-${cur.color}">${cur.score}</div>
+        <div class="dial-label c-${cur.color}">${cur.label}</div>
+        <div class="dial-reasons">${topReasons.map(r=>`<span>· ${r}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="stats">
+      ${statsCols.map(s=>`<div class="stat"><div class="stat-label">${s.label}</div><div class="stat-val">${s.val}</div>${s.sub?`<div class="stat-sub">${s.sub}</div>`:''}</div>`).join('')}
+    </div>
+    <div class="windows">
+      <div class="sec-label">Najlepšie okná — 3 dni</div>
+      ${wins.map(w=>`<div class="win-row">
+        <span class="win-day"><span class="win-dot dot-${w.score.color}"></span>${dayStr(w.time)} ${w.time.slice(11,16)}</span>
+        <span class="win-score c-${w.score.color}">${w.score.score} · ${w.score.label}</span>
+      </div>`).join('') || '<div style="font-size:13px;color:var(--txt3)">Žiadne výrazné okno</div>'}
+    </div>
+  </div>`;
 }
 
-function buildSummary(){
-  const devinCur = state.scores.devin?.[state.nowIdx.devin];
-  const labCur = state.scores.lab?.[state.nowIdx.lab];
-  if (!devinCur || !labCur) return 'Nepodarilo sa vyhodnotiť aktuálne podmienky.';
-  const better = devinCur.score >= labCur.score ? LOCATIONS.devin.name : LOCATIONS.lab.name;
-  const betterScore = Math.max(devinCur.score, labCur.score);
-  const topReason = (devinCur.score >= labCur.score ? devinCur : labCur).reasons[0] || '';
-  if (betterScore >= 75) return `${better} vyzerá teraz najlepšie (${betterScore}/100) — ${topReason}`;
-  if (betterScore >= 55) return `Slušné podmienky pri ${better} (${betterScore}/100) — ${topReason}`;
-  return `Momentálne skôr slabšie podmienky na oboch miestach — ${topReason || 'sleduj zmenu tlaku'}.`;
+function buildBanner(){
+  const keys=Object.keys(LOCATIONS).filter(k=>state.data[k]);
+  if(!keys.length) return 'Bez dát.';
+  let best=null,bestLoc='';
+  keys.forEach(k=>{
+    const s=state.scores[k]?.[state.nowIdx[k]];
+    if(s&&(!best||s.score>best.score)){best=s;bestLoc=LOCATIONS[k].name;}
+  });
+  if(!best) return '—';
+  const mode={general:'',privlac:' (prívlač)',polozena:' (položená)',zubac:' (zubáč)',sumec:' (sumec)'}[state.mode]||'';
+  if(best.score>=75) return `🟢 ${bestLoc}${mode} — ${best.score}/100 · ${best.label}. ${best.reasons[0]||''}`;
+  if(best.score>=55) return `🔵 ${bestLoc}${mode} — ${best.score}/100 · ${best.label}. ${best.reasons[0]||''}`;
+  return `🟡 Momentálne slabšie podmienky (max ${best.score}/100). ${best.reasons[0]||''}`;
 }
 
-/* ---- canvas river-line graph ---- */
-function drawGraph(){
-  const canvas = document.getElementById('riverGraph');
-  const key = state.activeGraphLoc;
-  const hours = state.data[key];
-  const scores = state.scores[key];
-  if (!hours || !scores) return;
-
-  const dpr = window.devicePixelRatio || 1;
-  const cssWidth = canvas.clientWidth || canvas.parentElement.clientWidth;
-  const cssHeight = 220;
-  canvas.width = cssWidth * dpr;
-  canvas.height = cssHeight * dpr;
-  canvas.style.height = cssHeight + 'px';
-  const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
-  ctx.clearRect(0,0,cssWidth,cssHeight);
-
-  const padL = 8, padR = 8, padT = 16, padB = 22;
-  const plotW = cssWidth - padL - padR;
-  const plotH = cssHeight - padT - padB;
-
-  const pressures = hours.map(h=>h.pressure);
-  const minP = Math.min(...pressures) - 1;
-  const maxP = Math.max(...pressures) + 1;
-  const xAt = i => padL + (i/(hours.length-1)) * plotW;
-  const yAt = p => padT + plotH - ((p - minP)/(maxP - minP)) * plotH;
-
-  // dawn/dusk bands
-  hours.forEach((h,i)=>{
-    const hod = parseInt(h.time.slice(11,13),10);
-    if ((hod>=5&&hod<=8)||(hod>=19&&hod<=22)){
-      ctx.fillStyle = 'rgba(217,164,65,0.06)';
-      ctx.fillRect(xAt(i), padT, plotW/(hours.length-1)+1, plotH);
-    }
-  });
-
-  // "now" marker
-  const nowIdx = state.nowIdx[key];
-  ctx.strokeStyle = 'rgba(242,236,218,0.25)';
-  ctx.setLineDash([3,3]);
-  ctx.beginPath(); ctx.moveTo(xAt(nowIdx), padT); ctx.lineTo(xAt(nowIdx), padT+plotH); ctx.stroke();
-  ctx.setLineDash([]);
-
-  // segmented river line, colored by local trend
-  for (let i=1;i<hours.length;i++){
-    const d3 = hours[i].pressure - (hours[i-3] ? hours[i-3].pressure : hours[i].pressure);
-    let color = 'var(--reed)';
-    if (d3 <= -0.5) color = getCss('--gold');
-    else if (d3 >= 1.0) color = getCss('--rust');
-    else color = getCss('--reed');
-    ctx.beginPath();
-    ctx.moveTo(xAt(i-1), yAt(hours[i-1].pressure));
-    ctx.lineTo(xAt(i), yAt(hours[i].pressure));
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2.4;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-  }
-
-  // best-window dots
-  const windows = findBestWindows(hours, scores, 5);
-  windows.forEach(w => {
-    const idx = hours.findIndex(h => h.time === w.time);
-    if (idx < 0) return;
-    ctx.beginPath();
-    ctx.arc(xAt(idx), yAt(hours[idx].pressure), 4, 0, Math.PI*2);
-    ctx.fillStyle = getCss('--gold-soft');
-    ctx.fill();
-    ctx.strokeStyle = '#1B1306'; ctx.lineWidth = 1; ctx.stroke();
-  });
-
-  // day labels along x-axis
-  ctx.fillStyle = 'rgba(242,236,218,0.55)';
-  ctx.font = '11px "IBM Plex Mono", monospace';
-  let lastDay = '';
-  hours.forEach((h,i)=>{
-    const hod = parseInt(h.time.slice(11,13),10);
-    const dateStr = h.time.slice(0,10);
-    if (hod === 12 && dateStr !== lastDay){
-      lastDay = dateStr;
-      const d = new Date(dateStr+'T12:00:00');
-      const dayNames = ['Ne','Po','Ut','St','Št','Pi','So'];
-      ctx.fillText(dayNames[d.getDay()]+' '+dateStr.slice(8,10)+'.'+dateStr.slice(5,7)+'.', xAt(i)-12, cssHeight-6);
-    }
-  });
+function showSkeletons(){
+  document.getElementById('locsRoot').innerHTML=
+    Object.keys(LOCATIONS).map(()=>`<div class="loc-card" style="padding:20px;display:flex;flex-direction:column;gap:12px;">
+      <div class="sk" style="height:16px;width:55%"></div>
+      <div class="sk" style="height:60px"></div>
+      <div class="sk" style="height:12px;width:80%"></div>
+    </div>`).join('');
+  document.getElementById('banner').textContent='Načítavam…';
 }
-function getCss(varName){
-  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+
+function render(){
+  document.getElementById('locsRoot').innerHTML=Object.keys(LOCATIONS).map(renderCard).join('');
+  document.getElementById('banner').textContent=buildBanner();
+  const ts=state.liveAt?new Date(state.liveAt):(state.bakedAt?new Date(state.bakedAt):null);
+  document.getElementById('lastUpd').textContent=ts
+    ?(state.liveAt?'Live ':'Ráno ')+ts.toLocaleTimeString('sk-SK',{hour:'2-digit',minute:'2-digit'})
+    :'—';
+  animNeedles(document.getElementById('locsRoot'));
+  drawGraph();
 }
 
 /* =========================================================================
-   ORCHESTRATION
+   GRAPH
    ========================================================================= */
-function renderFromState(){
-  const root = document.getElementById('cardsRoot');
-  const anyData = Object.keys(LOCATIONS).some(k => state.data[k]);
+function drawGraph(){
+  const canvas=document.getElementById('riverGraph');
+  const k=state.activeGraph;
+  const hours=state.data[k], scores=state.scores[k];
+  if(!hours||!scores) return;
 
-  if (!anyData){
-    root.innerHTML = `<div class="error-box">Nepodarilo sa načítať počasie a nemám ani zapečené, ani uložené dáta z minula. Skontroluj pripojenie a skús Obnoviť.</div>`;
-    document.getElementById('summaryLine').textContent = 'Bez dát.';
-    return;
-  }
+  const dpr=window.devicePixelRatio||1;
+  const cw=canvas.parentElement.clientWidth||canvas.clientWidth||600;
+  const ch=180;
+  canvas.width=cw*dpr; canvas.height=ch*dpr;
+  canvas.style.width=cw+'px'; canvas.style.height=ch+'px';
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,cw,ch);
 
-  root.innerHTML = Object.keys(LOCATIONS).map(key => {
-    if (!state.data[key]) return `<div class="card error-box">Nepodarilo sa načítať ${LOCATIONS[key].name}.</div>`;
-    return renderCard(key, state.data[key], state.scores[key], state.nowIdx[key], state.stale[key]);
-  }).join('');
+  const pL=6,pR=6,pT=12,pB=22;
+  const W=cw-pL-pR, H=ch-pT-pB;
+  const ps=hours.map(h=>h.pressure);
+  const mn=Math.min(...ps)-1, mx=Math.max(...ps)+1;
+  const xAt=i=>pL+(i/(hours.length-1))*W;
+  const yAt=p=>pT+H-((p-mn)/(mx-mn))*H;
 
-  document.getElementById('summaryLine').textContent = buildSummary();
-  const ts = state.liveAt ? new Date(state.liveAt) : (state.bakedAt ? new Date(state.bakedAt) : null);
-  document.getElementById('lastUpdated').textContent = ts
-    ? (state.liveAt ? 'Aktualizované ' : 'Dáta z rannej aktualizácie ') + ts.toLocaleTimeString('sk-SK', {hour:'2-digit', minute:'2-digit'})
-    : '—';
-
-  animateNeedles(root);
-  drawGraph();
-}
-
-// silent=true: try to refresh in the background without disturbing an already-good render
-// (used after preloaded data is shown, and may simply no-op if the environment blocks fetch)
-async function fetchLiveAll({ silent } = { silent:false }){
-  if (!silent){
-    document.getElementById('summaryLine').textContent = 'Načítavam aktuálne počasie…';
-    document.getElementById('cardsRoot').innerHTML = `
-      <div class="card"><div class="skeleton" style="width:60%"></div><div class="skeleton" style="width:40%;margin-top:10px"></div></div>
-      <div class="card"><div class="skeleton" style="width:60%"></div><div class="skeleton" style="width:40%;margin-top:10px"></div></div>
-    `;
-  }
-  let gotAny = false;
-  for (const key of Object.keys(LOCATIONS)){
-    const loc = LOCATIONS[key];
-    const cacheKey = `weather:${key}`;
-    try{
-      const res = await fetch(buildUrl(loc.lat, loc.lon));
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const json = await res.json();
-      const hours = parseOpenMeteo(json);
-      state.data[key] = hours;
-      state.nowIdx[key] = findNowIndex(hours);
-      state.scores[key] = hours.map((_, i) => scoreHour(hours, i, state.mode));
-      state.stale[key] = false;
-      gotAny = true;
-      try{ await window.storage.set(cacheKey, JSON.stringify({ hours, fetchedAt: Date.now() }), false); }catch(e){ /* not critical */ }
-    }catch(err){
-      console.error('Chyba pri načítaní', key, err);
-      if (!state.data[key]){
-        try{
-          const cached = await window.storage.get(cacheKey, false);
-          if (cached && cached.value){
-            const parsed = JSON.parse(cached.value);
-            state.data[key] = parsed.hours;
-            state.nowIdx[key] = findNowIndex(parsed.hours);
-            state.scores[key] = parsed.hours.map((_, i) => scoreHour(parsed.hours, i, state.mode));
-            state.stale[key] = true;
-            gotAny = true;
-          }
-        }catch(e){ /* no cache either */ }
-      }
-      // if state.data[key] already exists (e.g. from PRELOADED), just keep showing it —
-      // a failed silent refresh shouldn't downgrade an already-good baked render.
+  // dawn/dusk bands
+  hours.forEach((h,i)=>{
+    const hod=parseInt(h.time.slice(11,13),10);
+    if((hod>=20&&hod<=23)||(hod>=3&&hod<=7)){
+      ctx.fillStyle='rgba(245,200,66,0.05)';
+      ctx.fillRect(xAt(i),pT,W/(hours.length-1)+1,H);
     }
+  });
+
+  // "now" line
+  const ni=state.nowIdx[k];
+  ctx.strokeStyle='rgba(255,255,255,0.2)'; ctx.setLineDash([3,4]); ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(xAt(ni),pT); ctx.lineTo(xAt(ni),pT+H); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // pressure line segments colored by 3h trend
+  for(let i=1;i<hours.length;i++){
+    const d3=hours[i].pressure-(hours[i-3]||hours[i]).pressure;
+    ctx.strokeStyle=d3<=-0.5?'var(--ok)':d3>=1.0?'var(--warn)':'var(--accent)';
+    ctx.lineWidth=2.5; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(xAt(i-1),yAt(hours[i-1].pressure)); ctx.lineTo(xAt(i),yAt(hours[i].pressure)); ctx.stroke();
   }
-  if (gotAny) state.liveAt = Date.now();
-  renderFromState();
+
+  // best-window dots
+  const wins=findBestWindows(hours,scores,5);
+  wins.forEach(w=>{
+    const idx=hours.findIndex(h=>h.time===w.time);
+    if(idx<0) return;
+    ctx.beginPath(); ctx.arc(xAt(idx),yAt(hours[idx].pressure),4.5,0,Math.PI*2);
+    ctx.fillStyle='var(--gold)'; ctx.fill();
+    ctx.strokeStyle='#080F12'; ctx.lineWidth=1; ctx.stroke();
+  });
+
+  // x-axis day labels
+  ctx.fillStyle='rgba(122,154,168,0.8)'; ctx.font=`10.5px "JetBrains Mono",monospace`;
+  let lastD='';
+  hours.forEach((h,i)=>{
+    if(parseInt(h.time.slice(11,13),10)===12&&h.time.slice(0,10)!==lastD){
+      lastD=h.time.slice(0,10);
+      const d=new Date(lastD+'T12:00:00');
+      ctx.fillText(`${DAY[d.getDay()]} ${lastD.slice(8)}.${lastD.slice(5,7)}.`,xAt(i)-14,ch-6);
+    }
+  });
 }
 
+/* =========================================================================
+   MANUAL ESTIMATE
+   ========================================================================= */
+function manualEstimate({p3,t24,precip,wind,hour,mode}){
+  // Minimal version using scoreHour with a fake hours array
+  const fakeH={time:`2000-01-01T${String(hour).padStart(2,'0')}:00`,pressure:1013,temp:18,precip,wind,soilTemp:15};
+  const fakeH3={time:'2000-01-01T00:00',pressure:1013-p3*3,temp:18-t24,precip:0,wind,soilTemp:15};
+  const arr=[...Array(25).fill(fakeH3),fakeH];
+  return scoreHour(arr,25,mode,'centuz'); // neutral location
+}
+
+/* =========================================================================
+   INIT & EVENTS
+   ========================================================================= */
 async function init(){
-  const hadBaked = hydrateFromPreloaded();
-  if (hadBaked){
-    renderFromState();                  // instant — no network needed
-    fetchLiveAll({ silent: true });      // best-effort refresh; quietly ignored if blocked
-  } else {
-    await fetchLiveAll({ silent: false }); // first load with no baked data: normal spinner + visible errors
-  }
+  const hadBaked=hydratePreloaded();
+  if(hadBaked){render();fetchAll(true);}
+  else await fetchAll(false);
 }
 
-document.getElementById('refreshBtn').addEventListener('click', () => fetchLiveAll({ silent: false }));
-document.getElementById('graphTabs').addEventListener('click', (e) => {
-  const btn = e.target.closest('.tab');
-  if (!btn) return;
-  btn.closest('.tabs').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  state.activeGraphLoc = btn.dataset.loc;
+document.getElementById('refreshBtn').addEventListener('click',()=>fetchAll(false));
+
+document.getElementById('modeTabs').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');
+  if(!b) return;
+  document.querySelectorAll('#modeTabs .chip').forEach(c=>c.classList.remove('active'));
+  b.classList.add('active');
+  state.mode=b.dataset.mode;
+  document.getElementById('mMode').value=state.mode;
+  recompute(); render();
+});
+
+document.getElementById('graphTabs').addEventListener('click',e=>{
+  const b=e.target.closest('.gtab');
+  if(!b) return;
+  document.querySelectorAll('#graphTabs .gtab').forEach(t=>t.classList.remove('active'));
+  b.classList.add('active');
+  state.activeGraph=b.dataset.loc;
   drawGraph();
 });
-document.getElementById('modeTabs').addEventListener('click', (e) => {
-  const btn = e.target.closest('.tab');
-  if (!btn) return;
-  btn.closest('.tabs').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  state.mode = btn.dataset.mode;
-  document.getElementById('mMode').value = state.mode;
-  recomputeScores();
-  renderFromState();
-});
-window.addEventListener('resize', () => { if (state.data[state.activeGraphLoc]) drawGraph(); });
 
-document.getElementById('manualBtn').addEventListener('click', () => {
-  const pTrend3 = parseFloat(document.getElementById('mPressureTrend').value) || 0;
-  const tTrend24 = parseFloat(document.getElementById('mTempTrend').value) || 0;
-  const precip = parseFloat(document.getElementById('mPrecip').value) || 0;
-  const wind = parseFloat(document.getElementById('mWind').value) || 0;
-  const hour = parseInt(document.getElementById('mHour').value, 10) || 0;
-  const mode = document.getElementById('mMode').value;
-  const r = manualEstimate({ pTrend3, tTrend24, precip, wind, hour, mode });
-  document.getElementById('manualResult').innerHTML =
-    `<strong>${r.score}/100 — ${r.label}</strong><br>` +
-    r.reasons.map(x => '• ' + x).join('<br>');
+window.addEventListener('resize',()=>{if(state.data[state.activeGraph]) drawGraph();});
+
+document.getElementById('manualBtn').addEventListener('click',()=>{
+  const r=manualEstimate({
+    p3:parseFloat(document.getElementById('mP').value)||0,
+    t24:parseFloat(document.getElementById('mT').value)||0,
+    precip:parseFloat(document.getElementById('mR').value)||0,
+    wind:parseFloat(document.getElementById('mW').value)||0,
+    hour:parseInt(document.getElementById('mH').value,10)||0,
+    mode:document.getElementById('mMode').value
+  });
+  const el=document.getElementById('mResult');
+  el.style.display='block';
+  el.innerHTML=`<strong class="c-${r.color}">${r.score}/100 — ${r.label}</strong><br>`+r.reasons.map(x=>`· ${x}`).join('<br>');
+});
+
+document.getElementById('mMode').addEventListener('change',e=>{
+  const mode=e.target.value;
+  state.mode=mode;
+  document.querySelectorAll('#modeTabs .chip').forEach(c=>{
+    c.classList.toggle('active',c.dataset.mode===mode);
+  });
+  recompute(); render();
 });
 
 init();
